@@ -8,6 +8,7 @@
     "url": "git@github.com:darrylwest/aws-commons.git"
   },
   "dependencies": {
+    "aws-sdk": "^2.0.0-rc13",
     "commander": "^2.2.0",
     "lodash": "~2.4.1",
     "moment": "~2.5.0",

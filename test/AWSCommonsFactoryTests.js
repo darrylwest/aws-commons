@@ -12,19 +12,34 @@ var should = require('chai').should(),
 describe('AWSCommonsFactory', function() {
     'use strict';
 
+    var createBase64Keys = function() {
+        var keys = {
+            version:'2.0',
+            aws:{
+                accessKeyId:'MyTestAccessKey',
+                secretAccessKey:'MyTestSecretAccessKey'
+            }
+        };
+
+        var json = JSON.stringify( keys );
+
+        return new Buffer( JSON.stringify( keys ) ).toString('base64');
+    };
+
     var createOptions = function() {
         var opts = {};
 
         opts.environment = 'test';
         opts.log = log;
-        // opts.base64Keys = 'ya'; // TODO create a simulated keys
+        opts.base64Keys = createBase64Keys();
 
         return opts;
     };
 
     describe('#instance', function() {
         var methods = [
-            'createS3Connection'
+            'createS3Connection',
+            'parseKeys'
         ];
 
         it('should create an instance of AWSCommonsFactory', function() {
