@@ -1,6 +1,6 @@
 {
   "name": "aws-commons",
-  "version": "00.9.1",
+  "version": "0.9.1",
   "description": "A collection of small utilities to manage AWS services and actions",
   "author": "darryl.west@raincitysoftware.com",
   "repository": {
