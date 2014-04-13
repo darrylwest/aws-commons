@@ -4,7 +4,11 @@ A collection of small node utilities to help with common AWS operations as defin
 
 Installation
 ===
-*When the project is published to npm, you will be able it install using* __npm install aws-commons__ *until then, you can clone the project, run the tests, check out the examples, etc.__
+*When this project finally gets published to npm, you will be able it install using* 
+
+	npm install aws-commons
+
+*Until then, you can clone the project, run the tests, check out the examples, etc.*
 
 AWS Commons Factory
 ===
