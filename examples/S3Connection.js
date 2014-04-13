@@ -1,10 +1,13 @@
 #!/usr/bin/env node
 
+// This simple example lists all the bucket belonging to the key owner.  to run, you must create
+// an encoded key object called 'keys.enc' in your $HOME/.settings folder.
+
 var fs = require('fs'),
     path = require('path'),
     log = require('simple-node-logger').createLogger(),
     home = process.env.HOME,
-    keyfile = path.join(home, '.settings/profmed.keys.enc'),
+    keyfile = path.join(home, '.settings/keys.enc'),
     AWSCommonsFactory = require('../lib/AWSCommonsFactory');
 
 var listBucketsCallback = function(err, data) {
@@ -14,14 +17,8 @@ var listBucketsCallback = function(err, data) {
 };
 
 fs.readFile(keyfile, 'utf8', function(err, data) {
-    var b64keys = data;
-
-    var json = new Buffer(b64keys, 'base64').toString('ascii');
-
-    log.info( JSON.parse( json ));
-
     var opts = {
-        base64Keys:b64keys,
+        base64Keys:data,
         log:log
     };
 
