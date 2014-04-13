@@ -78,4 +78,37 @@ describe('AWSCommonsFactory', function() {
             });
         });
     });
+
+    describe('parseKeys', function() {
+        it('should parse a set of known keys', function() {
+            var factory = new AWSCommonsFactory( createOptions() ),
+                keys = factory.parseKeys();
+
+            should.exist( keys );
+        });
+
+        it('should fail to parse a bad set of keys', function() {
+            var options = createOptions(),
+                factory;
+
+            options.base64Keys = 'bad-keys';
+            factory = new AWSCommonsFactory( options );
+            /* jshint -W068 */
+            (function() {
+                factory.parseKeys();
+            }).should.throw();
+            /* jshint +W068 */
+        });
+    });
+
+    describe('createS3Connection', function() {
+        var factory = new AWSCommonsFactory( createOptions() );
+
+        it('should create an S3 connection object', function() {
+            var s3 = factory.createS3Connection();
+
+            should.exist( s3 );
+            dash.methods( s3 ).length.should.be.above( 84 );
+        });
+    });
 });
