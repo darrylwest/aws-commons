@@ -93,7 +93,7 @@ describe('AWSCommonsFactory', function() {
 
             options.base64Keys = 'bad-keys';
             factory = new AWSCommonsFactory( options );
-            /* jshint -W068 */
+            /* jshint -W068 : ignore IIFE wrapper */
             (function() {
                 factory.parseKeys();
             }).should.throw();
