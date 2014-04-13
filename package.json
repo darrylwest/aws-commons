@@ -15,10 +15,10 @@
     "node-uuid": "~1.4.1",
     "nodemailer": "~0.5.15",
     "shelljs": "~0.2.6",
+    "casual": "^1.4.5",
     "simple-node-logger": "~0.9.3"
   },
   "devDependencies": {
-    "casual": "^1.4.5",
     "chai": "~1.8.1",
     "express-mocks-http": "0.0.11",
     "grunt": "~0.4.2",
