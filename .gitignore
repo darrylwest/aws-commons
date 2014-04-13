@@ -6,5 +6,6 @@ dist
 *.bak
 *.log
 *.swp
+keys.enc
 node_modules
 jsdoc

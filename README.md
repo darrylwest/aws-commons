@@ -8,7 +8,9 @@ Installation
 
 	npm install aws-commons
 
-*Until then, you can clone the project, run the tests, check out the examples, etc.*
+*Until then, you can clone the project, run the tests, check out the examples, etc. or use this:*
+
+	npm install darrylwest/aws-commons --save
 
 AWS Commons Factory
 ===
@@ -122,7 +124,9 @@ or
 
 Examples
 ===
+### S3Connection
 
+This small example lists all buckets owned by the specified user.
 
 - - -
 <p><small><em>version 0.9.1</em></small></p>
