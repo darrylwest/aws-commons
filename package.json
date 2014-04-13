@@ -11,10 +11,7 @@
     "aws-sdk": "^2.0.0-rc13",
     "commander": "^2.2.0",
     "lodash": "~2.4.1",
-    "moment": "~2.5.0",
     "node-uuid": "~1.4.1",
-    "nodemailer": "~0.5.15",
-    "shelljs": "~0.2.6",
     "casual": "^1.4.5",
     "simple-node-logger": "~0.9.3"
   },

@@ -5,7 +5,6 @@
  * @created: 4/12/14 8:29 PM
  */
 var dash = require('lodash' ),
-    casual = require('casual' ),
     S3Dataset = require('../fixtures/S3Dataset');
 
 var MockS3 = function() {

@@ -3,9 +3,9 @@
  * @author: darryl.west@roundpeg.com
  * @created: 4/13/14 9:27 AM
  */
-var dash = require('lodash'),
-    casual = require('casual' ),
-    crypto = require('crypto');
+var casual = require('casual' ),
+    crypto = require('crypto' ),
+    uuid = require('node-uuid');
 
 /* jshint -W106 */ // underscores used in casual
 var S3Dataset = function() {
