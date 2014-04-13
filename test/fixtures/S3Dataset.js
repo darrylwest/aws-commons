@@ -36,6 +36,10 @@ var S3Dataset = function() {
         return bucket;
     };
 
+    this.createRequestId = function() {
+        return casual.random.toString(20).substr(2).toUpperCase();
+    };
+
     this.createId = function() {
         return crypto.createHash('sha256').update(casual.sentence).digest('hex');
     };

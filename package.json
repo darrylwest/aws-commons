@@ -34,6 +34,7 @@
     "mocha": "~1.16.2",
     "time-grunt": "~0.1.1"
   },
+  "main": "./index.js",
   "os": [
     "darwin",
     "linux"
