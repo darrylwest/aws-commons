@@ -4,12 +4,14 @@
  * @author: darryl.west@raincitysoftware.com
  * @created: 4/12/14 4:56 PM
  */
-var log = require('simple-node-logger' ).createLogger();
+var should = require('chai').should(),
+    log = require('simple-node-logger' ).createLogger(),
+    AWSCommonsFactory = require('../lib/AWSCommonsFactory');
 
 describe('AWSCommonsFactory', function() {
     'use strict';
 
-    
+
 
     var createOptions = function() {
         var opts = {};
@@ -21,6 +23,12 @@ describe('AWSCommonsFactory', function() {
     };
 
     describe('#instance', function() {
-        it('should create an instance of AWSCommonsFactory');
+        var factory = new AWSCommonsFactory( createOptions() );
+
+        it('should create an instance of AWSCommonsFactory', function() {
+            should.exist( factory );
+            
+            factory.should.be.an.instanceof( AWSCommonsFactory );
+        });
     });
 });
