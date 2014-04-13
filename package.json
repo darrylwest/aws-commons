@@ -2,7 +2,7 @@
   "name": "aws-commons",
   "version": "0.9.1",
   "description": "A collection of small utilities to manage AWS services and actions",
-  "author": "darryl.west@raincitysoftware.com",
+  "main": "./index.js",
   "repository": {
     "type": "git",
     "url": "git@github.com:darrylwest/aws-commons.git"
@@ -34,9 +34,7 @@
     "mocha": "~1.16.2",
     "time-grunt": "~0.1.1"
   },
-  "main": "./index.js",
-  "os": [
-    "darwin",
-    "linux"
-  ]
+  "author": "darryl.west@raincitysoftware.com",
+  "license": "Apache 2.0",
+  "homepage": "https://github.com/darrylwest/aws-commons"
 }
