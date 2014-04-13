@@ -19,7 +19,7 @@ module.exports = function(grunt) {
             scripts:{
                 files:[
                     '<%= dirs.lib %>/*.js',
-                    '<%= dirs.test %>/*/*.js'
+                    '<%= dirs.test %>/*.js'
                 ],
                 tasks: [
                     'mochaTest',
@@ -39,7 +39,7 @@ module.exports = function(grunt) {
             all: [
                 'Gruntfile.js',
                 '<%= dirs.app %>/*.js',
-                '<%= dirs.test %>/*/*.js'
+                '<%= dirs.test %>/*.js'
             ]
         },
         mochaTest: {
@@ -48,7 +48,7 @@ module.exports = function(grunt) {
                     reporter: 'spec'
                 },
                 src: [
-                    '<%= dirs.test %>/*/*.js'
+                    '<%= dirs.test %>/*.js'
                 ]
             }
         }

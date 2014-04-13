@@ -6,7 +6,7 @@ Installation
 ===
 npm install aws-commons
 
-AWS Factory
+AWS Commons Factory
 ===
 A factory class to create connections to S3, SQS, etc.  The factory is created with a base64 encoded set of keys modeled in JSON.  The decoded data structure looks like this:
 
@@ -28,7 +28,8 @@ The AWSFactory is designed to work as a singleton by invoking it's static create
 	var opts = {
 		base64Keys:b64string
 	};
-	var factory = AWSFactory.createInstance( opts );
+	
+	var factory = AWSCommonsFactory.newInstance( opts );
 
 Factory methods are used to create instances of AWS services.  Examples include:
 
