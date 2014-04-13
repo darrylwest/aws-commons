@@ -20,7 +20,7 @@ var S3Dataset = function() {
             count = 10;
         }
 
-        while (count > 0) {
+        while (count-- > 0) {
             list.push( dataset.createBucket() );
         }
 
