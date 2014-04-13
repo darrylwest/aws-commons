@@ -1,6 +1,6 @@
 AWS Commons - Node.js Utilities
 ===
-A collection of small node utilities to help with common AWS operations as defined by aws-sdk.  Utilities can be used in CLI scripts or as class objects in larger projects.
+A collection of small node/AWS utilities to help with common AWS operations as defined by aws-sdk.  Utilities can be used in CLI scripts or as class objects in larger projects.
 
 Installation
 ===

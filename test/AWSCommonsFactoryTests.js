@@ -12,6 +12,7 @@ var should = require('chai').should(),
 describe('AWSCommonsFactory', function() {
     'use strict';
 
+    // suppress all but the worst log messages for tests
     log.setLevel('fatal');
 
     var createBase64Keys = function() {

@@ -7,11 +7,14 @@
 var should = require('chai').should(),
     dash = require('lodash'),
     log = require('simple-node-logger' ).createLogger(),
-    CopyToS3 = require('../lib/CopyToS3');
+    CopyToS3 = require('../lib/CopyToS3' ),
+    MockS3 = require('./mocks/MockS3' ),
+    S3Dataset = require('./fixtures/S3Dataset');
 
 describe('CopyToS3', function() {
     'use strict';
 
+    // suppress all but the worst log messages for tests
     log.setLevel('fatal');
 
     var createOptions = function() {
@@ -19,10 +22,9 @@ describe('CopyToS3', function() {
 
         opts.log = log;
         opts.bucket = 'test-bucket';
-        opts.s3 = {}; // mock s3
+        opts.s3 = new MockS3();
         opts.sourceFile = './fixtures/test-file.txt';
         opts.key = 'testKey';
-
 
         return opts;
     };
@@ -56,6 +58,9 @@ describe('CopyToS3', function() {
             var copier = new CopyToS3( createOptions() );
             // console.log( dash.methods( copier ));
             dash.methods( copier ).length.should.equal( methods.length );
+            methods.forEach(function(method) {
+                copier[ method ].should.be.a( 'function' );
+            });
         });
     });
 });
