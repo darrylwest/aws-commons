@@ -12,6 +12,8 @@ var should = require('chai').should(),
 describe('AWSCommonsFactory', function() {
     'use strict';
 
+    log.setLevel('fatal');
+
     var createBase64Keys = function() {
         var keys = {
             version:'2.0',
@@ -63,6 +65,16 @@ describe('AWSCommonsFactory', function() {
             dash.methods( factory ).length.should.equal( methods.length );
             methods.forEach(function(method) {
                 factory[ method ].should.be.a( 'function' );
+            });
+        });
+
+        it('should execute all known methods', function() {
+            var factory = new AWSCommonsFactory( createOptions() );
+
+            methods.forEach(function(method) {
+                var obj = factory[ method ]();
+
+                should.exist( obj );
             });
         });
     });
