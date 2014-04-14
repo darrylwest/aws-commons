@@ -53,7 +53,7 @@ describe('AWSCommonsFactory', function() {
         });
 
         it('should create an instance of AWSCommonsFactory from static constructor', function() {
-            var factory = AWSCommonsFactory.newInstance( createOptions() );
+            var factory = AWSCommonsFactory.createInstance( createOptions() );
 
             should.exist( factory );
 

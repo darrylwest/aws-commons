@@ -35,8 +35,16 @@ The AWSFactory is designed to work as a singleton by invoking it's static create
 		base64Keys:b64string
 	};
 	
-	var factory = AWSCommonsFactory.newInstance( opts );
+	var factory = AWSCommonsFactory.createInstance( opts );
 
+Or, rather than setting the string, you can specify the key file like this:
+
+	var opts = {
+		keyfile:'path/to/file'
+	};
+	
+	var factory = AWSCommonsFactory.createInstance( opts );
+	
 Factory methods are used to create instances of AWS services.  Examples include:
 
 	// create an S3 connection

@@ -5,13 +5,15 @@
  * @created: 4/12/14 8:29 PM
  */
 var dash = require('lodash' ),
+    casual = require('casual' ),
     S3Dataset = require('../fixtures/S3Dataset');
 
 var MockS3 = function() {
     'use strict';
 
     var mock = this,
-        dataset = new S3Dataset();
+        dataset = new S3Dataset(),
+        cache = {};
 
     this.listBuckets = function(callback) {
         var data = {
@@ -27,11 +29,39 @@ var MockS3 = function() {
     };
 
     this.getObject = function(params, callback) {
-        dash.defer( callback, new Error('not implemented yet'), null );
+        var buf = new Buffer( casual.sentences(3) );
+        var data = {
+            AcceptRanges: 'bytes',
+            LastModified: dataset.createRandomDate(),
+            ContentLength:buf.length,
+            ETag:dataset.createMD5Hash( buf ),
+            ContentType:'binary/octet-stream',
+            Metadata: {},
+            Body:buf,
+            RequestId:dataset.createRequestId()
+        };
+
+        dash.defer( callback, null, data );
     };
 
     this.putObject = function(params, callback) {
-        dash.defer( callback, new Error('not implemented yet'), null );
+        var err,
+            data;
+
+        if (!params.Body) err = new Error('request must have a Body');
+        if (!params.Bucket) err = new Error('request params must have a Bucket');
+        if (!params.Key) err = new Error('request params must have a Key');
+
+        if (!err) {
+            data = {
+                ETag:dataset.createMD5Hash( params.Body ),
+                RequestId:dataset.createRequestId()
+            };
+
+            // TODO push to cache
+        }
+
+        dash.defer( callback, err, data );
     };
 
     // these are all the known methods for S3 as of 2014-04-12

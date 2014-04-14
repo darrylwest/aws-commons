@@ -1,6 +1,8 @@
 /**
+ * @class S3Dataset
+ * @classdesc S3Dataset provides methods and data used for testing s3 modules
  *
- * @author: darryl.west@roundpeg.com
+ * @author: darryl.west@raincitysoftware.com
  * @created: 4/13/14 9:27 AM
  */
 var casual = require('casual' ),
@@ -40,12 +42,32 @@ var S3Dataset = function() {
         return casual.random.toString(20).substr(2).toUpperCase();
     };
 
+    this.createRandomDate = function() {
+        return new Date( casual.unix_date );
+    };
+
+    this.createMD5Hash = function(text) {
+        return crypto.createHash('md5').update( text ).digest('hex');
+    };
+
     this.createId = function() {
         return crypto.createHash('sha256').update(casual.sentence).digest('hex');
     };
 
     this.createDisplayName = function() {
         return casual.company_name;
+    };
+
+    this.createPutParams = function(body) {
+        if (!body) body = new Buffer( casual.sentences( 5 ));
+        var params = {
+            Bucket:casual.domain,
+            Key:casual.word + '.txt',
+            ACL:'public-read',
+            Body:body
+        };
+
+        return params;
     };
 };
 /* jshint +W106 */

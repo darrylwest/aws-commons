@@ -9,8 +9,6 @@
 var fs = require('fs'),
     path = require('path'),
     log = require('simple-node-logger').createLogger(),
-    home = process.env.HOME,
-    // keyfile = path.join(home, '.settings/keys.enc'),
     keyfile = path.join( __dirname, 'keys.enc' ),
     AWSCommonsFactory = require('../lib/AWSCommonsFactory');
 
@@ -26,7 +24,7 @@ fs.readFile(keyfile, 'utf8', function(err, data) {
         log:log
     };
 
-    var factory = AWSCommonsFactory.newInstance( opts );
+    var factory = AWSCommonsFactory.createInstance( opts );
 
     var s3 = factory.createS3Connection();
 
