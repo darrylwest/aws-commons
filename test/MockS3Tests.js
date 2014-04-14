@@ -59,6 +59,21 @@ describe('MockS3', function() {
 
             mock.getObject( params, callback );
         });
+
+        it('should return an error if the object is not found', function(done) {
+            var cache = mock.clearCache(),
+                params = dataset.createPutParams(),
+                callback;
+
+            callback = function(err, data) {
+                should.exist( err );
+                should.not.exist( data );
+
+                done();
+            };
+
+            mock.getObject( params, callback );
+        });
     });
 
     describe('putObject', function() {
