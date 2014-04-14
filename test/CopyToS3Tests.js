@@ -6,6 +6,7 @@
  */
 var should = require('chai').should(),
     dash = require('lodash'),
+    path = require('path' ),
     log = require('simple-node-logger' ).createLogger(),
     CopyToS3 = require('../lib/CopyToS3' ),
     MockS3 = require('./mocks/MockS3' ),
@@ -23,7 +24,7 @@ describe('CopyToS3', function() {
         opts.log = log;
         opts.bucket = 'test-bucket';
         opts.s3 = new MockS3();
-        opts.sourceFile = './fixtures/test-file.txt';
+        opts.sourceFile = path.join( __dirname, './fixtures/test-file.txt');
         opts.key = 'testKey';
 
         return opts;
@@ -61,6 +62,22 @@ describe('CopyToS3', function() {
             methods.forEach(function(method) {
                 copier[ method ].should.be.a( 'function' );
             });
+        });
+    });
+
+    describe('copy', function() {
+        var options = createOptions(),
+            copier = new CopyToS3( options );
+
+        it('should start the copy process by stating the specified file', function(done) {
+            copier.statFileCallback = function(err, stat) {
+                should.not.exist( err );
+                should.exist( stat );
+
+                done();
+            };
+
+            copier.copy();
         });
     });
 });
