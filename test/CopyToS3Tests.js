@@ -66,8 +66,7 @@ describe('CopyToS3', function() {
     });
 
     describe('copy', function() {
-        var options = createOptions(),
-            copier = new CopyToS3( options );
+        var copier = new CopyToS3( createOptions() );
 
         it('should start the copy process by stating the specified file', function(done) {
             copier.statFileCallback = function(err, stat) {
@@ -79,5 +78,25 @@ describe('CopyToS3', function() {
 
             copier.copy();
         });
+    });
+
+    describe('statFileCallback', function() {
+        var copier = new CopyToS3( createOptions() );
+
+        it('should call read file when invoked without errors');
+        it('should set stat error message on error');
+    });
+
+    describe('readFile', function() {
+        var copier = new CopyToS3( createOptions() );
+        it('should read the source file');
+    });
+
+    describe('readFileCallback', function() {
+        it('should set the S3 params');
+    });
+
+    describe('copyCompleteCallback', function() {
+        it('should set stats for end and elapsed');
     });
 });
