@@ -134,7 +134,11 @@ Examples
 ===
 ### S3Connection
 
-This small example lists all buckets owned by the specified user.
+This small example lists all buckets owned by the specified user.  To run, your amazon keys must be set.  There is a helper function "__mkkey.sh__" to help create the required keys file.  It is used by all the examples.
+
+### S3PutGetObject
+
+Put an object, get an object and see what happens.  Test attempting to get an unknown object.
 
 - - -
 <p><small><em>version 0.9.1</em></small></p>

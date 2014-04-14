@@ -5,6 +5,7 @@
  * @created: 4/12/14 8:29 PM
  */
 var dash = require('lodash' ),
+    path = require('path' ),
     casual = require('casual' ),
     S3Dataset = require('../fixtures/S3Dataset');
 
@@ -14,6 +15,23 @@ var MockS3 = function() {
     var mock = this,
         dataset = new S3Dataset(),
         cache = {};
+
+    this.getCache = function() {
+        return cache;
+    };
+
+    this.setCache = function(data) {
+        if (!data) data = {};
+
+        cache = data;
+
+        return cache;
+    };
+
+    this.clearCache = function() {
+        cache = {};
+        return cache;
+    };
 
     this.listBuckets = function(callback) {
         var data = {
@@ -29,19 +47,19 @@ var MockS3 = function() {
     };
 
     this.getObject = function(params, callback) {
-        var buf = new Buffer( casual.sentences(3) );
-        var data = {
-            AcceptRanges: 'bytes',
-            LastModified: dataset.createRandomDate(),
-            ContentLength:buf.length,
-            ETag:dataset.createMD5Hash( buf ),
-            ContentType:'binary/octet-stream',
-            Metadata: {},
-            Body:buf,
-            RequestId:dataset.createRequestId()
-        };
+        var id = path.join( params.Bucket, params.Key ),
+            data = cache[ id ],
+            err;
 
-        dash.defer( callback, null, data );
+        if (!data) {
+            err = new Error('not found');
+        }
+
+        dash.defer( callback, err, data );
+    };
+
+    this.createKey = function(params) {
+        return path.join( params.Bucket, params.Key );
     };
 
     this.putObject = function(params, callback) {
@@ -58,7 +76,8 @@ var MockS3 = function() {
                 RequestId:dataset.createRequestId()
             };
 
-            // TODO push to cache
+            // push to cache
+            cache[ mock.createKey( params ) ] = dataset.createObject( params.Body );
         }
 
         dash.defer( callback, err, data );

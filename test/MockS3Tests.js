@@ -42,17 +42,38 @@ describe('MockS3', function() {
 
     describe('getObject', function() {
         // TODO create cache data and assign to mock; search for one or more of the known objects
-        it('should return a known object');
+        it('should return a known object', function(done) {
+            var cache = mock.clearCache(),
+                params = dataset.createPutParams(),
+                key = mock.createKey( params ),
+                callback;
+
+            cache[ key ] = dataset.createObject();
+
+            callback = function(err, data) {
+                should.not.exist( err );
+                should.exist( data );
+
+                done();
+            };
+
+            mock.getObject( params, callback );
+        });
     });
 
     describe('putObject', function() {
         it('should put data and return an expeced response', function(done) {
-            var params = dataset.createPutParams(),
+            var cache = mock.clearCache(),
+                params = dataset.createPutParams(),
+                key = mock.createKey( params ),
                 callback;
 
             callback = function(err, data) {
                 should.not.exist( err );
                 should.exist( data );
+
+                var obj = cache[ key ];
+                should.exist( obj );
 
                 done();
             };

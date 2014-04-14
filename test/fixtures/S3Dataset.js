@@ -69,6 +69,21 @@ var S3Dataset = function() {
 
         return params;
     };
+
+    this.createObject = function(body) {
+        if (!body) body = new Buffer( casual.sentences(3) );
+        var obj = {
+                AcceptRanges: 'bytes',
+                LastModified: dataset.createRandomDate(),
+                ContentLength:body.length,
+                ETag:'"' + dataset.createMD5Hash( body ) + '"',
+                ContentType:'application/octet-stream',
+                Metadata: {},
+                Body:body
+            };
+
+        return obj;
+    };
 };
 /* jshint +W106 */
 
