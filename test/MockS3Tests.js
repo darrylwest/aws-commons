@@ -1,5 +1,5 @@
 /**
- *
+ * @class MockS3Tests
  *
  * @author: darryl.west@roundpeg.com
  * @created: 4/13/14 3:21 PM

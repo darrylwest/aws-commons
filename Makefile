@@ -17,9 +17,13 @@ jshint:
 watch:
 	@( grunt watchall )
 
+publish:
+	@( npm publish ./ )
+
 version:
 	@( cd app ; node app --version )
 
 .PHONY:	test
 .PHONY:	version
 .PHONY:	npm
+.PHONY:	publish
