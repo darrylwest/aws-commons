@@ -72,7 +72,7 @@ A typical file copy example looks like this.
 		log:log, // and standard logger, e.g., winston, simple-node-logger, log4j, etc
 		sourceFile:'path/to/mySourceFile.txt',
 		bucket:'bucket-name',
-		destKey:'mySourceFile.txt',
+		key:'destination/key/file.txt',
 		mime:'text/plain', // optional
 		s3:factory.createS3Connection();
 	};
