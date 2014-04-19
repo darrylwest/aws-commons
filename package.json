@@ -9,11 +9,11 @@
   },
   "dependencies": {
     "aws-sdk": "^2.0.0-rc13",
+    "casual": "^1.4.5",
     "commander": "^2.2.0",
     "lodash": "~2.4.1",
     "node-uuid": "~1.4.1",
-    "casual": "^1.4.5",
-    "simple-node-logger": "~0.9.3"
+    "simple-node-logger": "^0.9.6"
   },
   "devDependencies": {
     "chai": "~1.8.1",
