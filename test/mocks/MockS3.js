@@ -83,6 +83,28 @@ var MockS3 = function() {
         dash.defer( callback, err, data );
     };
 
+    this.listObjects = function(params, callback) {
+        var err,
+            data,
+            request;
+
+        if (!params.Bucket) err = new Error('request params must have a Bucket');
+
+        if (!err) {
+            data = dataset.createObjectList( params.Bucket );
+            request = {
+                service:{
+                    config:{}
+                },
+                params:params
+            };
+        }
+
+        dash.defer( callback, err, data );
+
+        return request;
+    };
+
     // these are all the known methods for S3 as of 2014-04-12
     var methods = [
         'abortMultipartUpload',
@@ -136,7 +158,6 @@ var MockS3 = function() {
         // 'listBuckets',
         'listMultipartUploads',
         'listObjectVersions',
-        'listObjects',
         'listParts',
         'loadServiceClass',
         'makeRequest',

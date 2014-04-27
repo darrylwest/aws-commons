@@ -84,6 +84,50 @@ var S3Dataset = function() {
 
         return obj;
     };
+
+    this.createObjectList = function(bucket) {
+        var data,
+            owner = { DisplayName:'fred', ID:'2345' };
+
+        data = {
+            CommonPrefixes: [],
+            Contents:[
+                {
+                    Key: 'ama.jama/308/16/jld120024f1.png',
+                    LastModified: new Date( casual.unix_time ),
+                    ETag: '"c32e0de7e751a9d68d7d4c8c1922e167"',
+                    Size: 37217,
+                    Owner: owner,
+                    StorageClass: 'STANDARD'
+                },
+                {
+                    Key: 'ama.jama/308/16/jpg120031.xml',
+                    LastModified: new Date( casual.unix_time ),
+                    ETag: '"f46c2da51b35e49db79c5319f5b5c818"',
+                    Size: 6328,
+                    Owner: owner,
+                    StorageClass: 'STANDARD'
+                },
+                {
+                    Key: 'ama.jama/308/16/jwr120137-2-1_xml.html',
+                    LastModified: new Date( casual.unix_time ),
+                    ETag: '"7a90234e0c765b40ff93dca919cb7dcf"',
+                    Size: 11897,
+                    Owner: owner,
+                    StorageClass: 'STANDARD'
+                }
+            ],
+            Name: bucket,
+            Prefix: 'ama.jama',
+            Marker: '',
+            MaxKeys: 1000,
+            'Encoding-Type': 'url',
+            IsTruncated: false
+        };
+
+        return data;
+    };
+
 };
 /* jshint +W106 */
 

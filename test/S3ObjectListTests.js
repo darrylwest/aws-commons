@@ -15,7 +15,7 @@ var should = require('chai').should(),
 describe('S3ObjectList', function() {
     'use strict';
 
-    log.setLevel('info');
+    log.setLevel('fatal');
 
     var createOptions = function() {
         var opts = {};
@@ -34,6 +34,7 @@ describe('S3ObjectList', function() {
                 'setBucket',
                 'setMaxKeys',
                 'setPrefix',
+                'setMarker',
                 // inherited from event emitter
                 'addListener',
                 'emit',
@@ -59,6 +60,28 @@ describe('S3ObjectList', function() {
             methods.forEach(function(method) {
                 lister[ method ].should.be.a( 'function' );
             });
+        });
+    });
+
+    describe('#list', function() {
+        var lister = new S3ObjectList( createOptions() );
+
+        it('should list objects from a known bucket', function(done) {
+            lister.on('complete', function(results) {
+                should.exist( results );
+
+                should.exist( results.list );
+                results.list.length.should.equal( 3 );
+
+                done();
+            });
+
+            lister.on('error', function(err) {
+                should.not.exist( err );
+                done();
+            });
+
+            lister.list();
         });
     });
 });
