@@ -29,9 +29,32 @@ describe('S3ObjectList', function() {
 
     describe('#instance', function() {
         var methods = [
-                'list'
+                'list',
+                // inherited from event emitter
+                'addListener',
+                'emit',
+                'listeners',
+                'on',
+                'once',
+                'removeAllListeners',
+                'removeListener',
+                'setMaxListeners'
             ];
 
-        it('should create an instance of S3ObjectList');
+        it('should create an instance of S3ObjectList', function() {
+            var lister = new S3ObjectList( createOptions() );
+
+            should.exist( lister );
+            lister.should.be.instanceof( S3ObjectList );
+        });
+
+        it('should have all known methods by size and name', function() {
+            var lister = new S3ObjectList( createOptions() );
+            // console.log( dash.methods( copier ));
+            dash.methods( lister ).length.should.equal( methods.length );
+            methods.forEach(function(method) {
+                lister[ method ].should.be.a( 'function' );
+            });
+        });
     });
 });
