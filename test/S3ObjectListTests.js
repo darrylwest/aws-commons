@@ -30,6 +30,10 @@ describe('S3ObjectList', function() {
     describe('#instance', function() {
         var methods = [
                 'list',
+                'listCompleteCallback',
+                'setBucket',
+                'setMaxKeys',
+                'setPrefix',
                 // inherited from event emitter
                 'addListener',
                 'emit',
