@@ -109,7 +109,7 @@ describe('AWSCommonsFactory', function() {
             var s3 = factory.createS3Connection();
 
             should.exist( s3 );
-            dash.methods( s3 ).length.should.be.above( 84 );
+            dash.methods( s3 ).length.should.be.above( 80 );
         });
     });
 });

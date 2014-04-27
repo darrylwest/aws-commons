@@ -61,7 +61,7 @@ S3 utilities include small classes to read and copy file(s) from a file system t
 
 The CopyToS3 utility reads a source file, calculates the md5 hash, then puts the object data to a specified bucket and key.  If any process fails, then entire process is aborted.  After the file has been copied, the md5 hash is compared to the response ETag to insure that the data signitures match.
 
-A typical file copy example looks like this.
+A typical file copy example looks like this:
 
 	
 	// create the copy options
@@ -101,6 +101,40 @@ This can also be used as a simple helper to copy a small file from local file to
 #### When not to use
 
 If your application has existing object data where a file doesn't need to be read, then use s3.putObject();
+
+### S3ObjectList
+
+S3ObjectList can list all or a filtered set of objects for a given S3 bucket.  The list may include details such as last modified, size, etag/md5, and other metadata.
+
+A typical example would look like this:
+
+	var opts = {
+		log:log, // and standard logger, e.g., winston, simple-node-logger, log4j, etc
+		bucket:'bucket-name',
+		s3:factory.createS3Connection();
+	};
+
+	var lister = new S3ObjectList( opts );
+
+	lister.on('complete', function(results) {
+		log.info( results );
+
+		// results.list = object list
+		results.list.forEach(function(item) {
+			log.info('key: ', item.key);
+		});
+	});
+
+	list.on('error', function(err) {
+		log.error('list error: ', err.message);
+	});
+
+	lister.list();
+
+	lister.setBucket('newBucketName');
+	lister.list();
+
+	
 
 SES Utilities
 ===
