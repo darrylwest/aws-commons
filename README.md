@@ -4,13 +4,10 @@ A collection of small node/AWS utilities to help with common AWS operations as d
 
 Installation
 ===
-*When this project finally gets published to npm, you will be able it install using* 
+Install through npm using this:
 
-	npm install aws-commons
+	npm install aws-commons --save
 
-*Until then, you can clone the project, run the tests, check out the examples, etc. or use this:*
-
-	npm install darrylwest/aws-commons --save
 
 AWS Commons Factory
 ===
@@ -141,4 +138,4 @@ This small example lists all buckets owned by the specified user.  To run, your 
 Put an object, get an object and see what happens.  Test attempting to get an unknown object.
 
 - - -
-<p><small><em>version 0.9.1</em></small></p>
+<p><small><em>version 0.9.3</em></small></p>
