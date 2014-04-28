@@ -133,6 +133,35 @@ A typical example would look like this:
 
 	lister.setBucket('newBucketName');
 	lister.list();
+	
+### S3BucketWatch
+
+S3BucketWatch is an object watcher for a specified S3 Bucket.  Objects are periodically scanned and compared to a reference list for changes.  When changes are detected, a change event is fired.
+
+A typical example:
+
+	var opts = {
+		log:log, // and standard logger, e.g., winston, simple-node-logger, log4j, etc
+		bucket:'bucket-name',
+		s3:factory.createS3Connection();
+	};
+
+	var watcher = new S3BucketWatch( opts );
+
+	watcher.on('change', function(results) {
+		log.info( results );
+
+		// results.list = object list
+		results.list.forEach(function(item) {
+			log.info('key: ', item.key);
+		});
+	});
+
+	watcher.on('error', function(err) {
+		log.error('list error: ', err.message);
+	});
+
+	watcher.start();
 
 	
 
@@ -172,4 +201,4 @@ This small example lists all buckets owned by the specified user.  To run, your 
 Put an object, get an object and see what happens.  Test attempting to get an unknown object.
 
 - - -
-<p><small><em>version 0.9.4</em></small></p>
+<p><small><em>version 0.9.501</em></small></p>
