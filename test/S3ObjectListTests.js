@@ -1,5 +1,5 @@
 /**
- * @class S3ObjectList
+ * @class S3ObjectListTests
  *
  * @author: darryl.west@raincity.com
  * @created: 4/27/14 2:32 PM

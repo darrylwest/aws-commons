@@ -23,8 +23,7 @@ var S3CopyFile = function() {
         },
         factory = AWSCommonsFactory.createInstance( opts ),
         copier,
-        options,
-        config;
+        options;
 
     options = parser
         .version( VERSION )
