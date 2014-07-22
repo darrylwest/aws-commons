@@ -1,4 +1,6 @@
 
+BIN = /usr/local/bin
+
 all:
 	@make npm
 	@make test
@@ -18,8 +20,8 @@ watch:
 	@( grunt watchall )
 
 install:
-	ln -s `pwd`/bin/S3Lister.js /usr/local/bin/s3lister
-	ln -s `pwd`/bin/S3CopyFile.js /usr/local/bin/s3copyfile
+	[ -f $(BIN)/s3lister ] || ln -s `pwd`/bin/S3Lister.js $(BIN)/s3lister
+	[ -f  $(BIN)/s3copyfile ] || ln -s `pwd`/bin/S3CopyFile.js $(BIN)/s3copyfile
 
 version:
 	@( cd app ; node app --version )
