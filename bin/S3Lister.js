@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 /**
- *
+ * @class S3Lister
  *
  * @author: darryl.west@roundpeg.com
  * @created: 4/27/14 4:54 PM
  */
-var VERSION = '0.1.1',
+var VERSION = '0.1.2',
     path = require('path'),
     parser = require('commander'),
     S3ObjectList = require('../lib/S3ObjectList'),
@@ -16,9 +16,10 @@ var S3Lister = function() {
 
     var s3lister = this,
         log = require('simple-node-logger' ).createLogger(),
+        home = process.env.HOME,
         opts = {
             log:log,
-            keyfile:path.join( __dirname, 'keys.enc' )
+            keyfile:path.join( home, '.ssh', 'keys.enc' )
         },
         factory = AWSCommonsFactory.createInstance( opts ),
         lister,
@@ -34,6 +35,15 @@ var S3Lister = function() {
     log.info('version: ', VERSION);
 
     this.run = function() {
+        // verify the reqired command line parameters
+        var errors = s3lister.validateOptions();
+
+        if (errors.length > 0) {
+            parser.outputHelp();
+            log.error( errors.join('\n') );
+            return;
+        }
+
         var opts = {
             log:log,
             s3:factory.createS3Connection(),
@@ -55,6 +65,14 @@ var S3Lister = function() {
 
         lister.list();
     };
+
+    this.validateOptions = function() {
+        var errors = [];
+
+        if (!options.bucket) errors.push('request must include a destination bucket');
+
+        return errors;
+    }
 };
 
 new S3Lister().run();

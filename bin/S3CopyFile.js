@@ -6,7 +6,7 @@
  * @author: darryl.west@roundpeg.com
  * @created: 4/16/14 7:07 AM
  */
-var VERSION = '0.1.1',
+var VERSION = '0.1.2',
     path = require('path'),
     parser = require('commander' ),
     CopyToS3 = require('../lib/CopyToS3' ),
@@ -17,9 +17,10 @@ var S3CopyFile = function() {
 
     var copy = this,
         log = require('simple-node-logger' ).createLogger(),
+        home = project.env.HOME,
         opts = {
             log:log,
-            keyfile:path.join( __dirname, 'keys.enc' )
+            keyfile:path.join( home, '.ssh', 'keys.enc' )
         },
         factory = AWSCommonsFactory.createInstance( opts ),
         copier,
