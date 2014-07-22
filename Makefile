@@ -17,6 +17,10 @@ jshint:
 watch:
 	@( grunt watchall )
 
+install:
+	ln -s `pwd`/bin/S3Lister.js /usr/local/bin/s3lister
+	ln -s `pwd`/bin/S3CopyFile.js /usr/local/bin/s3copyfile
+
 version:
 	@( cd app ; node app --version )
 
