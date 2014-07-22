@@ -201,4 +201,4 @@ This small example lists all buckets owned by the specified user.  To run, your 
 Put an object, get an object and see what happens.  Test attempting to get an unknown object.
 
 - - -
-<p><small><em>version 0.9.501</em></small></p>
+<p><small><em>version 0.90.502</em></small></p>
