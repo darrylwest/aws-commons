@@ -8,6 +8,14 @@ Install through npm using this:
 
 	npm install aws-commons --save
 
+Or if you want to use the command line scripts, install from github like this:
+
+	git clone https://github.com/darrylwest/aws-commons.git
+	
+	make npm
+	sudo make install
+	
+The scripts require that your keys file be stored in your $HOME/.ssh folder.
 
 AWS Commons Factory
 ===
@@ -201,4 +209,4 @@ This small example lists all buckets owned by the specified user.  To run, your 
 Put an object, get an object and see what happens.  Test attempting to get an unknown object.
 
 - - -
-<p><small><em>version 0.90.502</em></small></p>
+<p><small><em>version 0.90.503</em></small></p>
