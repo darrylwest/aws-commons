@@ -209,4 +209,4 @@ This small example lists all buckets owned by the specified user.  To run, your 
 Put an object, get an object and see what happens.  Test attempting to get an unknown object.
 
 - - -
-<p><small><em>version 0.90.503</em></small></p>
+<p><small><em>version 0.90.504 | copyright 2014 rain city software</em></small></p>

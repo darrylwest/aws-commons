@@ -17,7 +17,7 @@ var S3CopyFile = function() {
 
     var copy = this,
         log = require('simple-node-logger' ).createLogger(),
-        home = project.env.HOME,
+        home = process.env.HOME,
         opts = {
             log:log,
             keyfile:path.join( home, '.ssh', 'keys.enc' )
