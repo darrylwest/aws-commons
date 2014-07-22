@@ -2,8 +2,8 @@ AWS Commons - Node.js Utilities
 ===
 A collection of small node/AWS utilities to help with common AWS operations as defined by aws-sdk.  Utilities can be used in CLI scripts or as class objects in larger projects.
 
-Installation
-===
+## Installation
+
 Install through npm using this:
 
 	npm install aws-commons --save
@@ -17,8 +17,8 @@ Or if you want to use the command line scripts, install from github like this:
 	
 The scripts require that your keys file be stored in your $HOME/.ssh folder.
 
-AWS Commons Factory
-===
+## AWS Commons Factory
+
 A factory class to create connections to S3, SQS, etc.  The factory is created with a base64 encoded set of keys modeled in JSON.  The decoded data structure looks like this:
 
 	{
@@ -31,8 +31,8 @@ A factory class to create connections to S3, SQS, etc.  The factory is created w
 
 This structure decoded and parsed by the factory to create connections to S3, SES, etc.  The factory's key parser is public to enable overridding for alternate structures.  The version number is used by the factory to automatically switch to alternate parsing as new technologies are provided.
 
-Factory Instantiation
-===
+## Factory Instantiation
+
 The AWSFactory is designed to work as a singleton by invoking it's static create method with the encoded set of access keys.  A typical use would be:
 
 	// return an instance of the AWSFactory.  construtor must be supplied an encoded set of keys.
@@ -61,8 +61,8 @@ Factory methods are used to create instances of AWS services.  Examples include:
 	// create a connection to SQS
 	var sqs = createSQSConnection();
 	
-S3 Utilities
-===
+## S3 Utilities
+
 S3 utilities include small classes to read and copy file(s) from a file system to a specified S3 bucket, read object(s) from a specified bucket and watch a bucket for object updates.  Utilities are separated into stateful class objects with public callback methods to enable override at various steps.  Objects are evented to fire progress, complete and error events.  
 
 ### CopyToS3
@@ -173,18 +173,20 @@ A typical example:
 
 	
 
-SES Utilities
-===
+## SES Utilities
 
-Mocks
-===
-### MockS3
+_not implemented yet_
 
-### MockMailer
+## Mocks
+
+There is a MockS3 exposted for testing.
+
+* MockS3
 
 
-Tests
-===
+
+## Tests
+
 Tests are written in mocha/chai using the should dialect.  Tests can be run from grunt or the make file:
 
 	grunt test
@@ -198,8 +200,8 @@ or
 	make watch
 	
 
-Examples
-===
+## Examples
+
 ### S3Connection
 
 This small example lists all buckets owned by the specified user.  To run, your amazon keys must be set.  There is a helper function "__mkkey.sh__" to help create the required keys file.  It is used by all the examples.
@@ -208,5 +210,12 @@ This small example lists all buckets owned by the specified user.  To run, your 
 
 Put an object, get an object and see what happens.  Test attempting to get an unknown object.
 
+## Command Scripts
+
+There are a few command scripts that can be installed using 'make install' (probably as sudo) or install manually.  Scripts are linked to /usr/local/bin/ so you need to clone the project to use the scripts.  They include:
+
+* s3lister
+* s3copyfile
+
 - - -
-<p><small><em>version 0.90.504 | copyright 2014 rain city software</em></small></p>
+<p><small><em>version 0.90.505 | copyright © 2014 rain city software</em></small></p>
