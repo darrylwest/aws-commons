@@ -7,7 +7,7 @@
 var should = require('chai').should(),
     dash = require('lodash'),
     path = require('path' ),
-    log = require('simple-node-logger' ).createLogger(),
+    log = require('simple-node-logger' ).createSimpleLogger(),
     S3BucketWatch = require('../lib/S3BucketWatch' ),
     MockS3 = require('./mocks/MockS3' ),
     S3Dataset = require('./fixtures/S3Dataset');

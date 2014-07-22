@@ -8,7 +8,7 @@
 var path = require('path'),
     crypto = require('crypto' ),
     casual = require('casual' ),
-    log = require('simple-node-logger').createLogger(),
+    log = require('simple-node-logger').createSimpleLogger(),
     AWSCommonsFactory = require('../lib/AWSCommonsFactory' ),
     bucket = 'unittest.roundpeg.org',
     key = 'aws-commons-test.txt',

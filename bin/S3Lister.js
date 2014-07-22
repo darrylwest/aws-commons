@@ -15,7 +15,7 @@ var S3Lister = function() {
     'use strict';
 
     var s3lister = this,
-        log = require('simple-node-logger' ).createLogger(),
+        log = require('simple-node-logger' ).createSimpleLogger(),
         home = process.env.HOME,
         opts = {
             log:log,

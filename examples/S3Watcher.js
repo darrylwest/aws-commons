@@ -15,7 +15,7 @@ var S3Watcher = function() {
     'use strict';
 
     var s3watcher = this,
-        log = require('simple-node-logger' ).createLogger(),
+        log = require('simple-node-logger' ).createSimpleLogger(),
         opts = {
             log:log,
             keyfile:path.join( __dirname, 'keys.enc' )

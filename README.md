@@ -218,4 +218,4 @@ There are a few command scripts that can be installed using 'make install' (prob
 * s3copyfile
 
 - - -
-<p><small><em>version 0.90.505 | copyright © 2014 rain city software</em></small></p>
+<p><small><em>version 0.90.506 | copyright © 2014 rain city software</em></small></p>

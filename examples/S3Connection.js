@@ -8,7 +8,7 @@
 
 var fs = require('fs'),
     path = require('path'),
-    log = require('simple-node-logger').createLogger(),
+    log = require('simple-node-logger').createSimpleLogger(),
     keyfile = path.join( __dirname, 'keys.enc' ),
     AWSCommonsFactory = require('../lib/AWSCommonsFactory');
 

@@ -16,7 +16,7 @@ var S3CopyFile = function() {
     'use strict';
 
     var copy = this,
-        log = require('simple-node-logger' ).createLogger(),
+        log = require('simple-node-logger' ).createSimpleLogger(),
         home = process.env.HOME,
         opts = {
             log:log,
