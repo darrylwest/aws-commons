@@ -1,6 +1,6 @@
 {
   "name": "aws-commons",
-  "version": "0.90.506",
+  "version": "0.90.507",
   "description": "A collection of small utilities to manage AWS services and actions",
   "main": "./index.js",
   "repository": {
@@ -26,6 +26,7 @@
     "grunt-contrib-jshint": "~0.8.0",
     "grunt-contrib-watch": "~0.5.3",
     "grunt-mocha-test": "~0.8.1",
+    "grunt-nsp-package": "0.0.5",
     "jshint-stylish": "~0.1.3",
     "load-grunt-tasks": "~0.1.0",
     "mocha": "~1.16.2",
