@@ -1,5 +1,8 @@
 AWS Commons - Node.js Utilities
 ===
+
+[![NPM version](https://badge.fury.io/js/aws-commons.svg)](http://badge.fury.io/js/aws-commons)
+
 A collection of small node/AWS utilities to help with common AWS operations as defined by aws-sdk.  Utilities can be used in CLI scripts or as class objects in larger projects.
 
 ## Installation
@@ -218,4 +221,4 @@ There are a few command scripts that can be installed using 'make install' (prob
 * s3copyfile
 
 - - -
-<p><small><em>version 0.90.507 | copyright © 2014 rain city software</em></small></p>
+<p><small><em>version 0.90.51 | copyright © 2014 rain city software</em></small></p>
