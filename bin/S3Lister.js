@@ -5,7 +5,7 @@
  * @author: darryl.west@roundpeg.com
  * @created: 4/27/14 4:54 PM
  */
-var VERSION = '0.1.2',
+var VERSION = '0.1.3',
     path = require('path'),
     parser = require('commander'),
     S3ObjectList = require('../lib/S3ObjectList'),
@@ -21,7 +21,7 @@ var S3Lister = function() {
             log:log,
             keyfile:path.join( home, '.ssh', 'keys.enc' )
         },
-        factory = AWSCommonsFactory.createInstance( opts ),
+        factory,
         lister,
         options,
         config;
@@ -30,9 +30,17 @@ var S3Lister = function() {
         .version( VERSION )
         .option('-b --bucket <bucket>', 'set the bucket to list (required)')
         .option('-p --prefix <prefix>', 'set the optional prefix')
+        .option('-a --accessFile <accessFile>', 'set the access file')
         .parse( process.argv );
 
     log.info('version: ', VERSION);
+
+    if (options.accessFile) {
+        log.info('set the access file: ', options.accessFile);
+        opts.keyfile = options.accessFile;
+    }
+
+    factory = AWSCommonsFactory.createInstance( opts );
 
     this.run = function() {
         // verify the reqired command line parameters
