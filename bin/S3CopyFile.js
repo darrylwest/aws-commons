@@ -6,7 +6,7 @@
  * @author: darryl.west@roundpeg.com
  * @created: 4/16/14 7:07 AM
  */
-var VERSION = '0.1.3',
+var VERSION = '0.1.4',
     path = require('path'),
     parser = require('commander' ),
     CopyToS3 = require('../lib/CopyToS3' ),
