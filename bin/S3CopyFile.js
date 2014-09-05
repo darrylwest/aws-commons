@@ -6,7 +6,7 @@
  * @author: darryl.west@roundpeg.com
  * @created: 4/16/14 7:07 AM
  */
-var VERSION = '0.1.2',
+var VERSION = '0.1.3',
     path = require('path'),
     parser = require('commander' ),
     CopyToS3 = require('../lib/CopyToS3' ),
@@ -22,7 +22,7 @@ var S3CopyFile = function() {
             log:log,
             keyfile:path.join( home, '.ssh', 'keys.enc' )
         },
-        factory = AWSCommonsFactory.createInstance( opts ),
+        factory,
         copier,
         options;
 
@@ -30,13 +30,21 @@ var S3CopyFile = function() {
         .version( VERSION )
         .option('-f --file <file>', 'set the source file')
         .option('-b --bucket <bucket>', 'set the destination bucket')
-        .option('-k --key <key>', 'set the key')
+        .option('-k --key <key>', 'set the file key, e.g., destination name')
+        .option('-a --accessFile <accessFile>', 'set the access file')
         .parse( process.argv );
 
     log.info('version: ', VERSION);
 
+    if (options.accessFile) {
+        log.info('set the access file: ', options.accessFile);
+        opts.keyfile = options.accessFile;
+    }
+
+    factory = AWSCommonsFactory.createInstance( opts );
+
     this.run = function() {
-        // verify the reqired command line parameters
+        // verify the required command line parameters
         var errors = copy.validateOptions();
 
         if (errors.length > 0) {
