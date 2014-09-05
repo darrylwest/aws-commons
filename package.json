@@ -1,20 +1,21 @@
 {
   "name": "aws-commons",
-  "version": "0.90.54",
+  "version": "0.90.55",
   "description": "A collection of small utilities to manage AWS services and actions",
   "main": "./index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/darrylwest/aws-commons.git"
   },
-  "scripts":{
-    "test":"grunt test"
+  "scripts": {
+    "test": "grunt test"
   },
   "dependencies": {
     "aws-sdk": "^2.0.0-rc13",
     "casual": "^1.4.5",
     "commander": "^2.2.0",
     "lodash": "~2.4.1",
+    "mime-types": "^2.0.0",
     "node-uuid": "~1.4.1",
     "simple-node-logger": "^0.92.11"
   },

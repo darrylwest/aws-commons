@@ -37,7 +37,6 @@ describe('CopyToS3', function() {
                 'readFile',
                 'readFileCallback',
                 'copyCompleteCallback',
-                'determineMimeType',
                 // inherited from event emitter
                 'addListener',
                 'emit',
@@ -78,20 +77,6 @@ describe('CopyToS3', function() {
             };
 
             copier.copy();
-        });
-    });
-
-    describe('determineMimeType', function() {
-        var copier = new CopyToS3( createOptions() );
-
-        it('should determine the html mime type based on file extension', function() {
-            var type = copier.determineMimeType( 'ted.html' );
-            type.should.equal('text/html');
-        });
-
-        it('should determine the json mime type based on file extension', function() {
-            var type = copier.determineMimeType( 'ted.json' );
-            type.should.equal('application/json');
         });
     });
 
