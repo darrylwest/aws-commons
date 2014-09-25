@@ -46,7 +46,7 @@ describe('SESMailerTests', function() {
 
     describe('#instance', function() {
         var methods = [
-            'createEMailParams',
+            'createEMailModel',
             'send',
             // inherited from event emitter
             'addListener',

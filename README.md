@@ -228,11 +228,11 @@ Tests are written in mocha/chai using the should dialect.  Tests can be run from
 or
 
 	make test
-	
+
 or
 
 	make watch
-	
+
 
 ## Examples
 
@@ -252,4 +252,4 @@ There are a few command scripts that can be installed using 'make install' (prob
 * s3copyfile
 
 - - -
-<p><small><em>copyright © 2014 rain city software | version 0.90.58</em></small></p>
+<p><small><em>copyright © 2014 rain city software | version 0.90.59</em></small></p>

@@ -7,7 +7,8 @@
 module.exports = {
     commons:{
         AWSCommonsFactory: require('./lib/AWSCommonsFactory'),
-        CopyToS3: require('./lib/CopyToS3')
+        CopyToS3: require('./lib/CopyToS3'),
+        SESMailer: require( './lib/SESMailer')
     },
     mocks: {
         MockS3: require('./test/mocks/MockS3')
