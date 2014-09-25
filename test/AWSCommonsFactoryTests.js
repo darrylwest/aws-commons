@@ -43,6 +43,7 @@ describe('AWSCommonsFactory', function() {
         var methods = [
             'createS3Connection',
             'createSESConnection',
+            'createSNSConnection',
             'parseKeys'
         ];
 

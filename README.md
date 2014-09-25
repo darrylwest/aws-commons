@@ -16,10 +16,10 @@ Install through npm using this:
 Or if you want to use the command line scripts, install from github like this:
 
 	git clone https://github.com/darrylwest/aws-commons.git
-	
+
 	make npm
 	sudo make install
-	
+
 The scripts require that your keys file be stored in your $HOME/.ssh folder.
 
 ## AWS Commons Factory
@@ -30,7 +30,8 @@ A factory class to create connections to S3, SQS, etc.  The factory is created w
 		"version":"2.0",
 		"aws":{
 			"accessKeyId":"<your access key>",
-			"secretAccessKey":"<your secret access key>"
+			"secretAccessKey":"<your secret access key>",
+            "region":"<the region>"
 		}
 	}
 
@@ -59,13 +60,13 @@ Factory methods are used to create instances of AWS services.  Examples include:
 
 	// create an S3 connection
 	var s3 = factory.createS3Connection();
-	
+
 	// create an SES email connection 
 	var ses = factory.createSESConnection();
-	
+
 	// create a connection to SQS
 	var sqs = createSQSConnection();
-	
+
 ## S3 Utilities
 
 S3 utilities include small classes to read and copy file(s) from a file system to a specified S3 bucket, read object(s) from a specified bucket and watch a bucket for object updates.  Utilities are separated into stateful class objects with public callback methods to enable override at various steps.  Objects are evented to fire progress, complete and error events.
@@ -85,23 +86,23 @@ A typical file copy example looks like this:
 		mime:'text/plain', // optional
 		s3:factory.createS3Connection();
 	};
-	
+
 	// create the copier
 	var copier = new CopyToS3( opts );
-	
+
 	// attatch some event listeners
 	copier.on('complete', function(stats) {
 		log.info('file copy completed: bytes transferred: ', stats.size());
 	});
-	
+
 	copier.on('progress', function(msg) {
 		log.info('copy progress: ', msg);
 	});
-	
+
 	copier.on('error', function(err) {
 		log.error('something went wrong: ', err.message);
 	});
-	
+
 	copier.copy();
 
 #### When To Use
