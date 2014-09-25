@@ -42,6 +42,7 @@ describe('AWSCommonsFactory', function() {
     describe('#instance', function() {
         var methods = [
             'createS3Connection',
+            'createSESConnection',
             'parseKeys'
         ];
 
