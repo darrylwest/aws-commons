@@ -7,14 +7,18 @@
     "type": "git",
     "url": "https://github.com/darrylwest/aws-commons.git"
   },
-  "scripts": {
-    "test": "grunt test"
-  },
-  "dependencies": {
+  "keywords": [
     "s3",
     "ses",
     "sns",
     "publish/subscribe",
+    "email",
+    "notification"
+  ],
+  "scripts": {
+    "test": "grunt test"
+  },
+  "dependencies": {
     "aws-sdk": "^2.0.17",
     "casual": "^1.4.5",
     "commander": "^2.2.0",
