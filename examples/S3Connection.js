@@ -10,7 +10,7 @@ var fs = require('fs'),
     path = require('path'),
     log = require('simple-node-logger').createSimpleLogger(),
     keyfile = path.join( __dirname, 'keys.enc' ),
-    AWSCommonsFactory = require('../lib/AWSCommonsFactory');
+    AWSCommonsFactory = require('../index').commons.AWSCommonsFactory;
 
 var listBucketsCallback = function(err, data) {
     if (err) log.error( err );

@@ -8,8 +8,8 @@
 var VERSION = '0.1.1',
     path = require('path'),
     parser = require('commander' ),
-    SESMailer = require('../lib/SESMailer' ),
-    AWSCommonsFactory = require('../lib/AWSCommonsFactory');
+    SESMailer = require('../index' ).commons.SESMailer,
+    AWSCommonsFactory = require('../index').commons.AWSCommonsFactory;
 
 var log = require('simple-node-logger' ).createSimpleLogger(),
     opts = {
