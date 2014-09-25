@@ -44,7 +44,7 @@ The AWSFactory is designed to work as a singleton by invoking it's static create
 	var opts = {
 		base64Keys:b64string
 	};
-	
+
 	var factory = AWSCommonsFactory.createInstance( opts );
 
 Or, rather than setting the string, you can specify the key file like this:
@@ -52,23 +52,23 @@ Or, rather than setting the string, you can specify the key file like this:
 	var opts = {
 		keyfile:'path/to/file'
 	};
-	
+
 	var factory = AWSCommonsFactory.createInstance( opts );
-	
+
 Factory methods are used to create instances of AWS services.  Examples include:
 
 	// create an S3 connection
 	var s3 = factory.createS3Connection();
 	
 	// create an SES email connection 
-	var ses = factory.createSESTransport();
+	var ses = factory.createSESConnection();
 	
 	// create a connection to SQS
 	var sqs = createSQSConnection();
 	
 ## S3 Utilities
 
-S3 utilities include small classes to read and copy file(s) from a file system to a specified S3 bucket, read object(s) from a specified bucket and watch a bucket for object updates.  Utilities are separated into stateful class objects with public callback methods to enable override at various steps.  Objects are evented to fire progress, complete and error events.  
+S3 utilities include small classes to read and copy file(s) from a file system to a specified S3 bucket, read object(s) from a specified bucket and watch a bucket for object updates.  Utilities are separated into stateful class objects with public callback methods to enable override at various steps.  Objects are evented to fire progress, complete and error events.
 
 ### CopyToS3
 
@@ -76,7 +76,6 @@ The CopyToS3 utility reads a source file, calculates the md5 hash, then puts the
 
 A typical file copy example looks like this:
 
-	
 	// create the copy options
 	var opts = {
 		log:log, // and standard logger, e.g., winston, simple-node-logger, log4j, etc
@@ -146,7 +145,7 @@ A typical example would look like this:
 
 	lister.setBucket('newBucketName');
 	lister.list();
-	
+
 ### S3BucketWatch
 
 S3BucketWatch is an object watcher for a specified S3 Bucket.  Objects are periodically scanned and compared to a reference list for changes.  When changes are detected, a change event is fired.
@@ -176,11 +175,41 @@ A typical example:
 
 	watcher.start();
 
-	
 
 ## SES Utilities
 
-_not implemented yet_
+SESMailer is a thin wrapper around AWS/SES.  It makes it easy to create an SES connection, a parameters object and to send emails through SES.
+
+A typical example:
+
+	var opts = {
+        log:log,
+        ses:factory.createSESConnection
+    };
+
+    var mailer = new SESMailer( opts );
+
+    var params = mailer.createEMailParams();
+
+    params.setToAddress( 'myemail@email.com' );
+    params.setCCAddress( [ ccme@email.com, ccyou@email.com ] );
+    params.setSubject( 'This is my subject line...' );
+    params.setBody( 'This is my body <p>with tags</p>' );
+    params.setFrom( 'from@email.com' );
+
+	mailer.send( params );
+    mailer.on('sent', function(err, response) {
+    	if (err) return err;
+        console.log( response );
+    };
+
+    // or with a callback
+
+    mailer.send( params, function(err, response) {
+    	if (err) return err;
+        console.log( response );
+    };
+
 
 ## Mocks
 

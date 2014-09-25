@@ -17,11 +17,26 @@ describe('SESMailerTests', function() {
     // suppress all but the worst log messages for tests
     log.setLevel('fatal');
 
+    var MockSES = function() {
+        var mock = this;
+
+        this.sendEmail = function(params, callback) {
+            var result = {
+                ResponseMetadata: {
+                    RequestId: '3df74375-444e-11e4-bd8e-357568d2425b'
+                },
+                MessageId: '00000148aa4ba26b-038a03ec-b0fd-4772-b763-95c73ce69ab8-000000'
+            };
+
+            callback(null, result);
+        };
+    };
+
     var createOptions = function() {
         var opts = {};
 
         opts.log = log;
-        opts.ses = {};
+        opts.ses = new MockSES();
         opts.emailConfig = {
             source:'myname@mydomain.com'
         };
@@ -32,6 +47,7 @@ describe('SESMailerTests', function() {
     describe('#instance', function() {
         var methods = [
             'createEMailParams',
+            'send',
             // inherited from event emitter
             'addListener',
             'emit',
