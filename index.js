@@ -6,14 +6,15 @@
  */
 module.exports = {
     commons:{
-        AWSCommonsFactory: require('./lib/AWSCommonsFactory'),
-        CopyToS3: require('./lib/CopyToS3'),
-        SESMailer: require( './lib/SESMailer')
+        AWSCommonsFactory: require( './lib/AWSCommonsFactory' ),
+        CopyToS3: require( './lib/CopyToS3' ),
+        SESMailer: require( './lib/SESMailer' ),
+        SNSProvider: require( './lib/SNSProvider' )
     },
     mocks: {
-        MockS3: require('./test/mocks/MockS3')
+        MockS3: require( './test/mocks/MockS3' )
     },
     fixtures: {
-        S3Dataset: require('./test/fixtures/S3Dataset')
+        S3Dataset: require( './test/fixtures/S3Dataset' )
     }
 };
