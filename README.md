@@ -189,15 +189,15 @@ A typical example:
 
     var mailer = new SESMailer( opts );
 
-    var params = mailer.createEMailParams();
+    var model = mailer.createEMailParams();
 
-    params.setToAddress( 'myemail@email.com' );
-    params.setCCAddress( [ ccme@email.com, ccyou@email.com ] );
-    params.setSubject( 'This is my subject line...' );
-    params.setBody( 'This is my body <p>with tags</p>' );
-    params.setFrom( 'from@email.com' );
+    model.setToAddress( 'myemail@email.com' );
+    model.setCCAddress( [ ccme@email.com, ccyou@email.com ] );
+    model.setSubject( 'This is my subject line...' );
+    model.setBody( 'This is my body <p>with tags</p>' );
+    model.setFrom( 'from@email.com' );
 
-	mailer.send( params );
+	mailer.send( model.createParams() );
     mailer.on('sent', function(err, response) {
     	if (err) return err;
         console.log( response );
@@ -252,4 +252,4 @@ There are a few command scripts that can be installed using 'make install' (prob
 * s3copyfile
 
 - - -
-<p><small><em>copyright © 2014 rain city software | version 0.90.59</em></small></p>
+<p><small><em>copyright © 2014 rain city software | version 0.90.60</em></small></p>
