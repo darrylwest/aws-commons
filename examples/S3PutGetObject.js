@@ -34,7 +34,7 @@ var factory = AWSCommonsFactory.createInstance( opts ),
 
 var putObjectCallback = function(err, data) {
     if (err) throw err;
-    log.info('put response: ', data);
+    log.info('put response: ', JSON.stringify( data ));
 
     var etag = data.ETag.replace(/"/g, '');
 
@@ -50,7 +50,7 @@ var getObjectCallback = function(err, data) {
         log.error('get object error: ', err.message);
     }
 
-    log.info( 'get response:', data );
+    log.info( 'get response:', JSON.stringify( data ));
 };
 
 s3.putObject( putParams, putObjectCallback );

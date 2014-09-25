@@ -15,7 +15,7 @@ var fs = require('fs'),
 var listBucketsCallback = function(err, data) {
     if (err) log.error( err );
 
-    log.info( data );
+    log.info( JSON.stringify( data ));
 };
 
 fs.readFile(keyfile, 'utf8', function(err, data) {
