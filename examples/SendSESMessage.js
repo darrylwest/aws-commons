@@ -2,12 +2,11 @@
 /**
  * SendSESMessage
  *
- * @author: darryl.west@roundpeg.com
+ * @author: darryl.west@raincitysoftware.com
  * @created: 9/24/14 6:31 PM
  */
-var VERSION = '0.1.1',
+var parser = require('commander' ),
     path = require('path'),
-    parser = require('commander' ),
     SESMailer = require('../index' ).commons.SESMailer,
     AWSCommonsFactory = require('../index').commons.AWSCommonsFactory;
 
@@ -17,7 +16,6 @@ var log = require('simple-node-logger' ).createSimpleLogger(),
         keyfile:path.join( __dirname, 'keys.enc' )
     },
     factory = AWSCommonsFactory.createInstance( opts ),
-    ses = factory.createSESConnection(),
     mailer;
 
 opts.ses = factory.createSESConnection();
