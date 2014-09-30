@@ -30,6 +30,8 @@ describe('S3BucketWatch', function() {
     describe('#instance', function() {
         var methods = [
                 'start',
+                'listCallback',
+                'processListItem',
                 'stop',
                 // inherited from event emitter
                 'addListener',
