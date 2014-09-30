@@ -32,6 +32,7 @@ describe('S3BucketWatch', function() {
                 'start',
                 'listCallback',
                 'processListItem',
+                'getContentList',
                 'stop',
                 // inherited from event emitter
                 'addListener',

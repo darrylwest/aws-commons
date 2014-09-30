@@ -159,15 +159,23 @@ A typical example:
 		s3:factory.createS3Connection();
 	};
 
-	var watcher = new S3BucketWatch( opts );
+	var watcher = new S3BucketWatch( opts ),
+    	referenceList;
 
-	watcher.on('change', function(results) {
-		log.info( results );
+    watcher.on('listAvailable', function(size) {
+    	log.info( 'list size: ', size );
 
-		// results.list = object list
-		results.list.forEach(function(item) {
-			log.info('key: ', item.key);
-		});
+        if (!referenceList) {
+        	referenceList = watcher.getContentList();
+        }
+    });
+
+	watcher.on('change', function(item, action) {
+    	// action is added or modified or removed
+		log.info( item.key, ' was ', action );
+
+		// item = key, etag, size, and modified date/time
+		// do something with the changed item
 	});
 
 	watcher.on('error', function(err) {
@@ -227,11 +235,8 @@ There is a MockS3 exposted for testing.
 
 ## Tests
 
-Tests are written in mocha/chai using the should dialect.  Tests can be run from grunt or the make file:
+Tests are written in mocha/chai using the should dialect.  Tests can be run from npm or the make file:
 
-	grunt test
-
-or
 
 	make test
 

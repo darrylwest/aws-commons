@@ -7,6 +7,7 @@
  */
 var VERSION = '0.1.1',
     path = require('path'),
+    dash = require('lodash' ),
     parser = require('commander' ),
     S3BucketWatch = require('../lib/S3BucketWatch' ),
     AWSCommonsFactory = require('../lib/AWSCommonsFactory');
@@ -22,7 +23,8 @@ var S3Watcher = function() {
         },
         factory = AWSCommonsFactory.createInstance( opts ),
         watcher,
-        options;
+        options,
+        referenceList;
 
     options = parser
         .version( VERSION )
@@ -46,7 +48,22 @@ var S3Watcher = function() {
 
         watcher = new S3BucketWatch( opts );
 
+        watcher.on('listAvailable', function(size) {
+            if (!referenceList) {
+                referenceList = watcher.getContentList();
+
+                log.info('reference list size: ', dash.size( referenceList ));
+            } else if (size !== dash.size( referenceList )) {
+                log.info('list size changed...');
+            }
+        });
+
         // set listeners...
+        watcher.on('change', function(item, action) {
+            log.info( item.key, ' was ', action);
+
+            log.info( item );
+        });
 
         watcher.start();
     };
