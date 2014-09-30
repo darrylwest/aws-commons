@@ -171,7 +171,7 @@ A typical example:
     });
 
 	watcher.on('change', function(item, action) {
-    	// action is added or modified or removed
+    	// action is added or modified or deleted
 		log.info( item.key, ' was ', action );
 
 		// item = key, etag, size, and modified date/time
@@ -263,4 +263,4 @@ There are a few command scripts that can be installed using 'make install' (prob
 * s3copyfile
 
 - - -
-<p><small><em>copyright © 2014 rain city software | version 0.90.67</em></small></p>
+<p><small><em>copyright © 2014 rain city software | version 0.90.68</em></small></p>

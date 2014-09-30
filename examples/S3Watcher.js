@@ -54,7 +54,9 @@ var S3Watcher = function() {
 
                 log.info('reference list size: ', dash.size( referenceList ));
             } else if (size !== dash.size( referenceList )) {
-                log.info('list size changed...');
+                log.info('list size changed: ', dash.size( referenceList ), ' is now ', size);
+
+                referenceList = watcher.getContentList();
             }
         });
 
