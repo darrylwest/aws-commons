@@ -2,7 +2,7 @@
 /**
  * @class S3Lister
  *
- * @author: darryl.west@roundpeg.com
+ * @author: darryl.west@raincitysoftware.com
  * @created: 4/27/14 4:54 PM
  */
 var VERSION = '0.1.3',

@@ -3,7 +3,7 @@
  * @class S3CopyFile
  * @classdesc A simple script to copy a specified file from disk to a specified S3 bucket / key location.
  *
- * @author: darryl.west@roundpeg.com
+ * @author: darryl.west@raincitysoftware.com
  * @created: 4/16/14 7:07 AM
  */
 var VERSION = '0.1.4',

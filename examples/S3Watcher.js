@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 /**
+ * @class S3Watcher
  *
- *
- * @author: darryl.west@roundpeg.com
+ * @author: darryl.west@raincitysoftware.com
  * @created: 4/28/14 11:28 AM
  */
 var VERSION = '0.1.1',
