@@ -31,7 +31,7 @@ A factory class to create connections to S3, SQS, etc.  The factory is created w
 		"aws":{
 			"accessKeyId":"<your access key>",
 			"secretAccessKey":"<your secret access key>",
-            "region":"<the region>"
+            "region":"<the default region>"
 		}
 	}
 
@@ -263,4 +263,4 @@ There are a few command scripts that can be installed using 'make install' (prob
 * s3copyfile
 
 - - -
-<p><small><em>copyright © 2014 rain city software | version 0.90.69</em></small></p>
+<p><small><em>copyright © 2014 rain city software | version 0.90.70</em></small></p>
