@@ -1,6 +1,6 @@
 {
   "name": "aws-commons",
-  "version": "0.90.71",
+  "version": "0.91.72",
   "description": "A collection of small utilities to manage AWS services and actions",
   "main": "./index.js",
   "repository": {
