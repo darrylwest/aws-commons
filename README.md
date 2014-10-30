@@ -35,13 +35,13 @@ A factory class to create connections to S3, SQS, etc.  The factory is created w
 		}
 	}
 
-This structure decoded and parsed by the factory to create connections to S3, SES, etc.  The factory's key parser is public to enable overridding for alternate structures.  The version number is used by the factory to automatically switch to alternate parsing as new technologies are provided.
+This structure decoded and parsed by the factory to create connections to S3, SES, etc.  The factory's key parser is public to enable overriding for alternate structures.  The version number is used by the factory to automatically switch to alternate parsing as new technologies are provided.
 
 ## Factory Instantiation
 
 The AWSFactory is designed to work as a singleton by invoking it's static create method with the encoded set of access keys.  A typical use would be:
 
-	// return an instance of the AWSFactory.  construtor must be supplied an encoded set of keys.
+	// return an instance of the AWSFactory.  constructor must be supplied an encoded set of keys.
 	var opts = {
 		base64Keys:b64string
 	};
@@ -73,7 +73,7 @@ S3 utilities include small classes to read and copy file(s) from a file system t
 
 ### CopyToS3
 
-The CopyToS3 utility reads a source file, calculates the md5 hash, then puts the object data to a specified bucket and key.  If any process fails, then entire process is aborted.  After the file has been copied, the md5 hash is compared to the response ETag to insure that the data signitures match.
+The CopyToS3 utility reads a source file, calculates the md5 hash, then puts the object data to a specified bucket and key.  If any process fails, then entire process is aborted.  After the file has been copied, the md5 hash is compared to the response ETag to insure that the data signatures match.
 
 A typical file copy example looks like this:
 
@@ -227,7 +227,7 @@ SNSProvider is a thin wrapper around AWS/SNS.  It makes it easy to send simple n
 
 ## Mocks
 
-There is a MockS3 exposted for testing.
+There is a MockS3 exposed for testing.
 
 * MockS3
 
@@ -263,4 +263,4 @@ There are a few command scripts that can be installed using 'make install' (prob
 * s3copyfile
 
 - - -
-<p><small><em>copyright © 2014 rain city software | version 0.90.70</em></small></p>
+<p><small><em>copyright © 2014 rain city software | version 0.90.71</em></small></p>
