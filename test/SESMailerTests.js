@@ -1,7 +1,7 @@
 /**
  *
  *
- * @author: darryl.west@roundpeg.com
+ * @author: darryl.west@raincitysoftware.com
  * @created: 9/24/14 5:32 PM
  */
 var should = require('chai').should(),

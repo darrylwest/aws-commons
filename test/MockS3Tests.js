@@ -1,7 +1,7 @@
 /**
  * @class MockS3Tests
  *
- * @author: darryl.west@roundpeg.com
+ * @author: darryl.west@raincitysoftware.com
  * @created: 4/13/14 3:21 PM
  */
 var should = require('chai').should(),

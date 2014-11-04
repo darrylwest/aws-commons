@@ -1,7 +1,7 @@
 /**
  * @class S3BucketWatchTests
  *
- * @author: darryl.west@roundpeg.com
+ * @author: darryl.west@raincitysoftware.com
  * @created: 4/28/14 10:37 AM
  */
 var should = require('chai').should(),

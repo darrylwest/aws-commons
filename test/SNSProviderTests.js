@@ -1,7 +1,7 @@
 /**
  * @class SNSProviderTests
  *
- * @author: darryl.west@roundpeg.com
+ * @author: darryl.west@raincitysoftware.com
  * @created: 9/25/14 7:26 AM
  */
 var should = require('chai').should(),

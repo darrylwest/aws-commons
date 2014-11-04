@@ -4,6 +4,8 @@
  * @author: darryl.west@raincitysoftware.com
  * @created: 11/3/14 6:16 PM
  */
+var uuid = require('node-uuid' );
+
 var MockSES = function() {
     'use strict';
 
@@ -12,9 +14,9 @@ var MockSES = function() {
     this.sendEmail = function(params, callback) {
         var result = {
             ResponseMetadata: {
-                RequestId: '3df74375-444e-11e4-bd8e-357568d2425b'
+                RequestId: uuid.v4()
             },
-            MessageId: '00000148aa4ba26b-038a03ec-b0fd-4772-b763-95c73ce69ab8-000000'
+            MessageId: '00000-' + uuid.v4() + '-000000'
         };
 
         callback(null, result);
