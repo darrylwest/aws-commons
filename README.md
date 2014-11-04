@@ -227,11 +227,9 @@ SNSProvider is a thin wrapper around AWS/SNS.  It makes it easy to send simple n
 
 ## Mocks
 
-There is a MockS3 exposed for testing.
-
 * MockS3
-
-
+* MockSES
+* MockSESMailer
 
 ## Tests
 
@@ -263,4 +261,4 @@ There are a few command scripts that can be installed using 'make install' (prob
 * s3copyfile
 
 - - -
-<p><small><em>copyright © 2014 rain city software | version 0.91.73</em></small></p>
+<p><small><em>copyright © 2014 rain city software | version 0.91.74</em></small></p>

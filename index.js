@@ -13,7 +13,9 @@ module.exports = {
         SNSProvider: require( './lib/SNSProvider' )
     },
     mocks: {
-        MockS3: require( './test/mocks/MockS3' )
+        MockS3: require( './test/mocks/MockS3' ),
+        MockSES: require( './test/mocks/MockSES' ),
+        MockSESMailer: require( './test/mocks/MockSESMailer' )
     },
     fixtures: {
         S3Dataset: require( './test/fixtures/S3Dataset' )
