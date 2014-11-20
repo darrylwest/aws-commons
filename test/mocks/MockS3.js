@@ -6,7 +6,6 @@
  */
 var dash = require('lodash' ),
     path = require('path' ),
-    casual = require('casual' ),
     S3Dataset = require('../fixtures/S3Dataset');
 
 var MockS3 = function() {

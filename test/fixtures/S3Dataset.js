@@ -5,11 +5,10 @@
  * @author: darryl.west@raincitysoftware.com
  * @created: 4/13/14 9:27 AM
  */
-var casual = require('casual' ),
+var randomData = require('random-fixture-data' ),
     crypto = require('crypto' ),
     uuid = require('node-uuid');
 
-/* jshint -W106 */ // underscores used in casual
 var S3Dataset = function() {
     'use strict';
 
@@ -31,19 +30,19 @@ var S3Dataset = function() {
 
     this.createBucket = function() {
         var bucket = {
-            Name: casual.word,
-            CreationDate: new Date( casual.unix_time )
+            Name: randomData.word,
+            CreationDate: new Date( randomData.unixTime )
         };
 
         return bucket;
     };
 
     this.createRequestId = function() {
-        return casual.random.toString(20).substr(2).toUpperCase();
+        return randomData.random.toString(20).substr(2).toUpperCase();
     };
 
     this.createRandomDate = function() {
-        return new Date( casual.unix_date );
+        return new Date( randomData.unixTime );
     };
 
     this.createMD5Hash = function(text) {
@@ -51,18 +50,18 @@ var S3Dataset = function() {
     };
 
     this.createId = function() {
-        return crypto.createHash('sha256').update(casual.sentence).digest('hex');
+        return crypto.createHash('sha256').update(randomData.sentence).digest('hex');
     };
 
     this.createDisplayName = function() {
-        return casual.company_name;
+        return randomData.companyName;
     };
 
     this.createPutParams = function(body) {
-        if (!body) body = new Buffer( casual.sentences( 5 ));
+        if (!body) body = new Buffer( randomData.sentences( 5 ));
         var params = {
-            Bucket:casual.domain,
-            Key:casual.word + '.txt',
+            Bucket:randomData.domain,
+            Key:randomData.word + '.txt',
             ACL:'public-read',
             Body:body
         };
@@ -71,7 +70,7 @@ var S3Dataset = function() {
     };
 
     this.createObject = function(body) {
-        if (!body) body = new Buffer( casual.sentences(3) );
+        if (!body) body = new Buffer( randomData.sentences(3) );
         var obj = {
                 AcceptRanges: 'bytes',
                 LastModified: dataset.createRandomDate(),
@@ -94,7 +93,7 @@ var S3Dataset = function() {
             Contents:[
                 {
                     Key: 'ama.jama/308/16/jld120024f1.png',
-                    LastModified: new Date( casual.unix_time ),
+                    LastModified: new Date( randomData.unixTime ),
                     ETag: '"c32e0de7e751a9d68d7d4c8c1922e167"',
                     Size: 37217,
                     Owner: owner,
@@ -102,7 +101,7 @@ var S3Dataset = function() {
                 },
                 {
                     Key: 'ama.jama/308/16/jpg120031.xml',
-                    LastModified: new Date( casual.unix_time ),
+                    LastModified: new Date( randomData.unixTime ),
                     ETag: '"f46c2da51b35e49db79c5319f5b5c818"',
                     Size: 6328,
                     Owner: owner,
@@ -110,7 +109,7 @@ var S3Dataset = function() {
                 },
                 {
                     Key: 'ama.jama/308/16/jwr120137-2-1_xml.html',
-                    LastModified: new Date( casual.unix_time ),
+                    LastModified: new Date( randomData.unixTime ),
                     ETag: '"7a90234e0c765b40ff93dca919cb7dcf"',
                     Size: 11897,
                     Owner: owner,
@@ -129,6 +128,5 @@ var S3Dataset = function() {
     };
 
 };
-/* jshint +W106 */
 
 module.exports = S3Dataset;

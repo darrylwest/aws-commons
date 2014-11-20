@@ -1,6 +1,6 @@
 {
   "name": "aws-commons",
-  "version": "0.91.75",
+  "version": "0.91.76",
   "description": "A collection of small utilities to manage AWS services and actions",
   "main": "./index.js",
   "repository": {
@@ -20,12 +20,12 @@
   },
   "dependencies": {
     "aws-sdk": "^2.0.17",
-    "casual": "^1.4.5",
     "commander": "^2.2.0",
     "lodash": "~2.4.1",
     "mime-types": "^2.0.0",
     "node-uuid": "~1.4.1",
-    "simple-node-logger": "^0.92.11"
+    "random-fixture-data": "^2.0.12",
+    "simple-node-logger": "^0.92.13"
   },
   "devDependencies": {
     "chai": "~1.8.1",
