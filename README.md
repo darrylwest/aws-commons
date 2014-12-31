@@ -136,9 +136,15 @@ A typical example would look like this:
 		results.list.forEach(function(item) {
 			log.info('key: ', item.key);
 		});
+		
+		// if the list isn't complete then set the marker and list again
+		if (results.isTruncated) {
+			lister.setMarker( results.nextMarker );
+			lister.list();
+		}
 	});
 
-	list.on('error', function(err) {
+	lister.on('error', function(err) {
 		log.error('list error: ', err.message);
 	});
 
@@ -261,4 +267,4 @@ There are a few command scripts that can be installed using 'make install' (prob
 * s3copyfile
 
 - - -
-<p><small><em>copyright © 2014 rain city software | version 0.91.79</em></small></p>
+<p><small><em>copyright © 2014 rain city software | version 0.91.80</em></small></p>
