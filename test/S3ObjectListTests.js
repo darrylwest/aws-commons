@@ -31,6 +31,8 @@ describe('S3ObjectList', function() {
         var methods = [
                 'list',
                 'listCompleteCallback',
+                'filter',
+                'parseObject',
                 'setBucket',
                 'setMaxKeys',
                 'setPrefix',
