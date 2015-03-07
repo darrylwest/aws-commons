@@ -267,4 +267,4 @@ There are a few command scripts that can be installed using 'make install' (prob
 * s3copyfile
 
 - - -
-<p><small><em>copyright © 2014-2015 rain city software | version 0.91.82</em></small></p>
+<p><small><em>copyright © 2014-2015 rain city software | version 0.91.83</em></small></p>
