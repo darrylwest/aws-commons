@@ -5,7 +5,7 @@
  * @author: darryl.west@raincitysoftware.com
  * @created: 4/27/14 4:54 PM
  */
-var VERSION = '0.1.3',
+var VERSION = '0.1.4',
     path = require('path'),
     parser = require('commander'),
     S3ObjectList = require('../lib/S3ObjectList'),
@@ -31,6 +31,7 @@ var S3Lister = function() {
         .option('-b --bucket <bucket>', 'set the bucket to list (required)')
         .option('-p --prefix <prefix>', 'set the optional prefix')
         .option('-a --accessFile <accessFile>', 'set the access file')
+        .option('-v --verbose', 'verbose listing')
         .parse( process.argv );
 
     log.info('version: ', VERSION);
@@ -63,7 +64,11 @@ var S3Lister = function() {
         lister = new S3ObjectList( opts );
         lister.on('complete', function(results) {
             results.list.forEach(function(item) {
-                log.info( item.key );
+                if (options.verbose) {
+                    log.info( item.key, ' ', item.size, ' ', item.lastModified );
+                } else {
+                    log.info( item.key );
+                }
             });
         });
 

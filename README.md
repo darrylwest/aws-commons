@@ -261,10 +261,34 @@ Put an object, get an object and see what happens.  Test attempting to get an un
 
 ## Command Scripts
 
-There are a few command scripts that can be installed using 'make install' (probably as sudo) or install manually.  Scripts are linked to /usr/local/bin/ so you need to clone the project to use the scripts.  They include:
+There are a few command scripts that can be installed using 'make install' (probably as sudo) or install manually.  Scripts are linked to /usr/local/bin/ so you need to clone the project to use the scripts.
 
-* s3lister
-* s3copyfile
+### S3Lister
+```
+Usage: s3lister [options]
 
+  Options:
+
+    -h, --help                    output usage information
+    -V, --version                 output the version number
+    -b --bucket <bucket>          set the bucket to list (required)
+    -p --prefix <prefix>          set the optional prefix
+    -a --accessFile <accessFile>  set the access file
+    -v --verbose                  verbose listing
+```
+
+### S3CopyFile
+```
+Usage: s3copyfile [options]
+
+  Options:
+
+    -h, --help                    output usage information
+    -V, --version                 output the version number
+    -f --file <file>              set the source file
+    -b --bucket <bucket>          set the destination bucket
+    -k --key <key>                set the file key, e.g., destination name
+    -a --accessFile <accessFile>  set the access file
+```
 - - -
-<p><small><em>copyright © 2014-2015 rain city software | version 0.91.84</em></small></p>
+<p><small><em>copyright © 2014-2015 rain city software | version 0.91.85</em></small></p>
