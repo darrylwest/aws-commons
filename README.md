@@ -291,4 +291,4 @@ Usage: s3copyfile [options]
     -a --accessFile <accessFile>  set the access file
 ```
 - - -
-<p><small><em>copyright © 2014-2015 rain city software | version 0.91.86</em></small></p>
+<p><small><em>copyright © 2014-2015 rain city software | version 0.91.87</em></small></p>
