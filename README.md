@@ -162,7 +162,8 @@ A typical example:
 	var opts = {
 		log:log, // and standard logger, e.g., winston, simple-node-logger, log4j, etc
 		bucket:'bucket-name',
-		s3:factory.createS3Connection();
+		s3:factory.createS3Connection(),
+        sleepInterval:6000 // 6 second loop
 	};
 
 	var watcher = new S3BucketWatch( opts ),
@@ -189,6 +190,35 @@ A typical example:
 	});
 
 	watcher.start();
+	
+When a file change is detected, the change event is fired with the S3 item data.  A typical entry looks like this:
+
+```
+	{
+		"key":"todo.md",
+		"modified":"2015-04-20T16:03:24.000Z",
+		"etag":"f86b5810fc263a2f19637f35b3f27c3e",
+		"size":211,
+		"lastVersion":{
+			"key":"todo.md",
+			"modified":"2015-04-20T16:02:29.000Z",
+			"etag":"\"b83526d91525f8b94a6c1ff537bd39f5\"",
+			"size":177
+		}
+	}
+```
+The first entry shows the current file specs.  The lastVersion is what the item was compared to.  So, this file "todo.md" changed in size from 177 to 211 bytes; the modified date and etags also changed.
+
+If the item is deleted, the action = "deleted" and the object looks like this:
+
+```
+	{
+		"key":"todo.md",
+		"modified":"2015-04-20T16:03:24.000Z",
+		"etag":"f86b5810fc263a2f19637f35b3f27c3e",
+		"size":211
+	}
+```
 
 
 ## SES Utilities
@@ -291,4 +321,4 @@ Usage: s3copyfile [options]
     -a --accessFile <accessFile>  set the access file
 ```
 - - -
-<p><small><em>copyright © 2014-2015 rain city software | version 0.91.87</em></small></p>
+<p><small><em>copyright © 2014-2015 rain city software | version 0.91.88</em></small></p>

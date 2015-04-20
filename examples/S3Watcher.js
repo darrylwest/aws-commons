@@ -21,7 +21,7 @@ var S3Watcher = function() {
             log:log,
             keyfile:path.join( __dirname, 'keys.enc' )
         },
-        factory = AWSCommonsFactory.createInstance( opts ),
+        factory,
         watcher,
         options,
         referenceList;
@@ -29,21 +29,33 @@ var S3Watcher = function() {
     options = parser
         .version( VERSION )
         .option('-b --bucket <bucket>', 'set the bucket name (required)')
+        .option('-i --interval [interval]', 'set the idle/loop time', 5000)
+        .option('-a --accessFile <accessFile>', 'set the access file')
         .parse( process.argv );
 
-    log.info('version: ', VERSION);
+    log.info('version: ', VERSION, ' sleep interval: ', options.interval);
+
+    if (options.accessFile) {
+        log.info('set the access file: ', options.accessFile);
+        opts.keyfile = options.accessFile;
+    }
+
+    factory = AWSCommonsFactory.createInstance( opts );
 
     this.run = function() {
+        var opts;
+
         if (!options.bucket) {
             parser.outputHelp();
             log.error('bucket name is required...');
             return;
         }
 
-        var opts = {
+        opts = {
             log:log,
             s3:factory.createS3Connection(),
-            bucket:options.bucket
+            bucket:options.bucket,
+            sleepInterval:dash.parseInt( options.interval )
         };
 
         watcher = new S3BucketWatch( opts );
@@ -65,6 +77,10 @@ var S3Watcher = function() {
             log.info( item.key, ' was ', action);
 
             log.info( item );
+        });
+
+        watcher.on('error', function(err) {
+            log.error( err );
         });
 
         watcher.start();
