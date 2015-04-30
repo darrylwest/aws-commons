@@ -273,6 +273,7 @@ The mock is easy to use.  Just set data in the mock's cache then read it back wi
 
 ```
 var mock = new MockS3(),
+	text = 'this is my data stored on S3...',
 	params = {
 		Bucket:'mybucket',
 		Key:'mykey'
@@ -280,14 +281,25 @@ var mock = new MockS3(),
 
 mock.setCache({
 		id:'mybucket/mykey',
-		data:new Buffer('this is my data stored on S3...')
+		data:{
+			AcceptRanges:'bytes',
+			LastModified:new Date(),
+			ContentLength:text.length,
+			ETag:'"1871f707997d270ca949256c00979b94"',
+			ContentType:'application/octet-stream',
+			Metadata:{},
+			Body:{
+				type:'Buffer',
+				data:new Buffer( text )
+			}
+		}
 	});
 
 mock.getObject( params, function(err, data) {
 	should.not.exist( err );
 	should.exist( data );
 	
-	data.toString('utf8').should.equal( text );
+	data.Body.toString('utf8').should.equal( text );
 	
 	done();
 });
@@ -348,4 +360,4 @@ Usage: s3copyfile [options]
     -a --accessFile <accessFile>  set the access file
 ```
 - - -
-<p><small><em>copyright © 2014-2015 rain city software | version 0.91.89</em></small></p>
+<p><small><em>copyright © 2014-2015 rain city software | version 0.91.90</em></small></p>

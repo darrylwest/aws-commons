@@ -6,8 +6,9 @@
  * @created: 4/13/14 3:47 PM
  */
 var path = require('path'),
+    dash = require('lodash'),
     crypto = require('crypto' ),
-    casual = require('casual' ),
+    randomData = require('random-fixture-data' ),
     log = require('simple-node-logger').createSimpleLogger(),
     AWSCommonsFactory = require('../index').commons.AWSCommonsFactory;
     bucket = 'unittest.roundpeg.org',
@@ -19,7 +20,7 @@ var path = require('path'),
 
 var factory = AWSCommonsFactory.createInstance( opts ),
     s3 = factory.createS3Connection(),
-    body = new Buffer( casual.sentences( 10 ) ),
+    body = new Buffer( randomData.sentences( 10 ) ),
     md5 = crypto.createHash('md5').update( body ).digest('hex' ),
     putParams = {
         Bucket:bucket,
@@ -51,6 +52,9 @@ var getObjectCallback = function(err, data) {
     }
 
     log.info( 'get response:', JSON.stringify( data ));
+    dash.keys( data ).forEach(function(key) {
+        log.info( key, '->', data[ key ] );
+    });
 };
 
 s3.putObject( putParams, putObjectCallback );
