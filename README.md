@@ -288,10 +288,7 @@ mock.setCache({
 			ETag:'"1871f707997d270ca949256c00979b94"',
 			ContentType:'application/octet-stream',
 			Metadata:{},
-			Body:{
-				type:'Buffer',
-				data:new Buffer( text )
-			}
+			Body:new Buffer( text )
 		}
 	});
 
@@ -360,4 +357,4 @@ Usage: s3copyfile [options]
     -a --accessFile <accessFile>  set the access file
 ```
 - - -
-<p><small><em>copyright © 2014-2015 rain city software | version 0.91.90</em></small></p>
+<p><small><em>copyright © 2014-2015 rain city software | version 0.91.91</em></small></p>
