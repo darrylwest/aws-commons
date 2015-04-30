@@ -267,6 +267,33 @@ SNSProvider is a thin wrapper around AWS/SNS.  It makes it easy to send simple n
 * MockSES
 * MockSESMailer
 
+### MockS3
+
+The mock is easy to use.  Just set data in the mock's cache then read it back with standard S3 commands.  Here is a simple example:
+
+```
+var mock = new MockS3(),
+	params = {
+		Bucket:'mybucket',
+		Key:'mykey'
+	};
+
+mock.setCache({
+		id:'mybucket/mykey',
+		data:new Buffer('this is my data stored on S3...')
+	});
+
+mock.getObject( params, function(err, data) {
+	should.not.exist( err );
+	should.exist( data );
+	
+	data.toString('utf8').should.equal( text );
+	
+	done();
+});
+	
+```
+
 ## Tests
 
 Tests are written in mocha/chai using the should dialect.  Tests can be run from npm or the make file:
@@ -321,4 +348,4 @@ Usage: s3copyfile [options]
     -a --accessFile <accessFile>  set the access file
 ```
 - - -
-<p><small><em>copyright © 2014-2015 rain city software | version 0.91.88</em></small></p>
+<p><small><em>copyright © 2014-2015 rain city software | version 0.91.89</em></small></p>
