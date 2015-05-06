@@ -128,6 +128,15 @@ A typical example would look like this:
 	};
 
 	var lister = new S3ObjectList( opts );
+	
+	// for this list, we just want the html files so use a filter
+	lister.filter = function(obj) {
+		var item = lister.parseObject( obj );
+		
+		if (item.key.indexOf( '.html' ) > 0) {
+			return item;
+		}
+	};
 
 	lister.on('complete', function(results) {
 		log.info( results );
@@ -357,4 +366,4 @@ Usage: s3copyfile [options]
     -a --accessFile <accessFile>  set the access file
 ```
 - - -
-<p><small><em>copyright © 2014-2015 rain city software | version 0.91.91</em></small></p>
+<p><small><em>copyright © 2014-2015 rain city software | version 0.91.92</em></small></p>
