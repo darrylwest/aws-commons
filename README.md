@@ -31,7 +31,7 @@ A factory class to create connections to S3, SQS, etc.  The factory is created w
 		"aws":{
 			"accessKeyId":"<your access key>",
 			"secretAccessKey":"<your secret access key>",
-            "region":"<the default region>"
+          "region":"<the default region>"
 		}
 	}
 
@@ -366,4 +366,4 @@ Usage: s3copyfile [options]
     -a --accessFile <accessFile>  set the access file
 ```
 - - -
-<p><small><em>copyright © 2014-2015 rain city software | version 0.91.92</em></small></p>
+<p><small><em>copyright © 2014-2016 rain city software | version 0.92.11</em></small></p>
