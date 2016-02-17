@@ -4,7 +4,7 @@
  * @author: darryl.west@raincitysoftware.com
  * @created: 9/24/14 5:32 PM
  */
-var should = require('chai').should(),
+const should = require('chai').should(),
     dash = require('lodash'),
     path = require('path' ),
     log = require('simple-node-logger' ).createSimpleLogger(),
@@ -18,7 +18,7 @@ describe('SESMailerTests', function() {
     // suppress all but the worst log messages for tests
     log.setLevel('fatal');
 
-    var createOptions = function() {
+    const createOptions = function() {
         var opts = {};
 
         opts.log = log;
@@ -31,20 +31,9 @@ describe('SESMailerTests', function() {
     };
 
     describe('#instance', function() {
-        var methods = [
+        const methods = [
             'createEMailModel',
-            'send',
-            // inherited from event emitter
-            'addListener',
-            'emit',
-            'listeners',
-            'on',
-            'once',
-            'removeAllListeners',
-            'removeListener',
-            'setMaxListeners',
-            'getMaxListeners',
-            'listenerCount'
+            'send'
         ];
 
         it('should create an instance of SESMailer', function() {
@@ -56,8 +45,8 @@ describe('SESMailerTests', function() {
 
         it('should have all known methods by size and name', function() {
             var mailer = new SESMailer( createOptions() );
-            // console.log( dash.methods( copier ));
-            dash.methods( mailer ).length.should.equal( methods.length );
+            // console.log( dash.functions( copier ));
+            dash.functions( mailer ).length.should.equal( methods.length );
             methods.forEach(function(method) {
                 mailer[ method ].should.be.a( 'function' );
             });

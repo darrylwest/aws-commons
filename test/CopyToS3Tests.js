@@ -4,7 +4,7 @@
  * @author: darryl.west@raincitysoftware.com
  * @created: 4/12/14 8:00 PM
  */
-var should = require('chai').should(),
+const should = require('chai').should(),
     dash = require('lodash'),
     path = require('path' ),
     log = require('simple-node-logger' ).createSimpleLogger(),
@@ -18,8 +18,8 @@ describe('CopyToS3', function() {
     // suppress all but the worst log messages for tests
     log.setLevel('fatal');
 
-    var createOptions = function() {
-        var opts = {};
+    const createOptions = function() {
+        const opts = {};
 
         opts.log = log;
         opts.bucket = 'test-bucket';
@@ -31,36 +31,25 @@ describe('CopyToS3', function() {
     };
 
     describe('#instance', function() {
-        var methods = [
+        const methods = [
             'copy',
             'statFileCallback',
             'readFile',
             'readFileCallback',
-            'copyCompleteCallback',
-            // inherited from event emitter
-            'addListener',
-            'emit',
-            'listeners',
-            'on',
-            'once',
-            'removeAllListeners',
-            'removeListener',
-            'setMaxListeners',
-            'getMaxListeners',
-            'listenerCount'
+            'copyCompleteCallback'
         ];
 
         it('should create an instance of CopyToS3', function() {
-            var copier = new CopyToS3( createOptions() );
+            const copier = new CopyToS3( createOptions() );
 
             should.exist( copier );
             copier.should.be.instanceof( CopyToS3 );
         });
 
         it('should have all known methods by size and name', function() {
-            var copier = new CopyToS3( createOptions() );
-            // console.log( dash.methods( copier ));
-            dash.methods( copier ).length.should.equal( methods.length );
+            const copier = new CopyToS3( createOptions() );
+            // console.log( dash.functions( copier ));
+            dash.functions( copier ).length.should.equal( methods.length );
             methods.forEach(function(method) {
                 copier[ method ].should.be.a( 'function' );
             });

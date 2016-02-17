@@ -4,7 +4,7 @@
  * @author: darryl.west@raincitysoftware.com
  * @created: 4/28/14 10:37 AM
  */
-var should = require('chai').should(),
+const should = require('chai').should(),
     dash = require('lodash'),
     path = require('path' ),
     log = require('simple-node-logger' ).createSimpleLogger(),
@@ -17,7 +17,7 @@ describe('S3BucketWatch', function() {
 
     log.setLevel('info');
 
-    var createOptions = function() {
+    const createOptions = function() {
         var opts = {};
 
         opts.log = log;
@@ -34,18 +34,7 @@ describe('S3BucketWatch', function() {
             'processListItem',
             'getContentList',
             'processDeletes',
-            'stop',
-            // inherited from event emitter
-            'addListener',
-            'emit',
-            'listeners',
-            'on',
-            'once',
-            'removeAllListeners',
-            'removeListener',
-            'setMaxListeners',
-            'getMaxListeners',
-            'listenerCount'
+            'stop'
         ];
 
         it('should create an instance of S3BucketWatch', function() {
@@ -57,8 +46,8 @@ describe('S3BucketWatch', function() {
 
         it('should have all known methods by size and name', function() {
             var watcher = new S3BucketWatch( createOptions() );
-            // console.log( dash.methods( copier ));
-            dash.methods( watcher ).length.should.equal( methods.length );
+            // console.log( dash.functions( copier ));
+            dash.functions( watcher ).length.should.equal( methods.length );
             methods.forEach(function(method) {
                 watcher[ method ].should.be.a( 'function' );
             });

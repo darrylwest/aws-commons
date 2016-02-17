@@ -4,7 +4,7 @@
  * @author: darryl.west@raincity.com
  * @created: 4/27/14 2:32 PM
  */
-var should = require('chai').should(),
+const should = require('chai').should(),
     dash = require('lodash'),
     path = require('path' ),
     log = require('simple-node-logger' ).createSimpleLogger(),
@@ -17,7 +17,7 @@ describe('S3ObjectList', function() {
 
     log.setLevel('fatal');
 
-    var createOptions = function() {
+    const createOptions = function() {
         var opts = {};
 
         opts.log = log;
@@ -28,7 +28,7 @@ describe('S3ObjectList', function() {
     };
 
     describe('#instance', function() {
-        var methods = [
+        const methods = [
             'list',
             'listCompleteCallback',
             'filter',
@@ -36,18 +36,7 @@ describe('S3ObjectList', function() {
             'setBucket',
             'setMaxKeys',
             'setPrefix',
-            'setMarker',
-            // inherited from event emitter
-            'addListener',
-            'emit',
-            'listeners',
-            'on',
-            'once',
-            'removeAllListeners',
-            'removeListener',
-            'setMaxListeners',
-            'getMaxListeners',
-            'listenerCount'
+            'setMarker'
         ];
 
         it('should create an instance of S3ObjectList', function() {
@@ -58,9 +47,9 @@ describe('S3ObjectList', function() {
         });
 
         it('should have all known methods by size and name', function() {
-            var lister = new S3ObjectList( createOptions() );
-            // console.log( dash.methods( copier ));
-            dash.methods( lister ).length.should.equal( methods.length );
+            const lister = new S3ObjectList( createOptions() );
+            // console.log( dash.functions( copier ));
+            dash.functions( lister ).length.should.equal( methods.length );
             methods.forEach(function(method) {
                 lister[ method ].should.be.a( 'function' );
             });

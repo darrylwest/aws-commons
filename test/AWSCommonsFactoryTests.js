@@ -4,10 +4,11 @@
  * @author: darryl.west@raincitysoftware.com
  * @created: 4/12/14 4:56 PM
  */
-var should = require('chai').should(),
+const should = require('chai').should(),
     dash = require('lodash'),
     log = require('simple-node-logger' ).createSimpleLogger(),
-    AWSCommonsFactory = require('../lib/AWSCommonsFactory');
+    AWSCommonsFactory = require('../lib/AWSCommonsFactory'),
+    aws = require('aws-sdk');
 
 describe('AWSCommonsFactory', function() {
     'use strict';
@@ -15,7 +16,7 @@ describe('AWSCommonsFactory', function() {
     // suppress all but the worst log messages for tests
     log.setLevel('fatal');
 
-    var createBase64Keys = function() {
+    const createBase64Keys = function() {
         var keys = {
             version:'2.0',
             aws:{
@@ -24,12 +25,12 @@ describe('AWSCommonsFactory', function() {
             }
         };
 
-        var json = JSON.stringify( keys );
+        const json = JSON.stringify( keys );
 
         return new Buffer( JSON.stringify( keys ) ).toString('base64');
     };
 
-    var createOptions = function() {
+    const createOptions = function() {
         var opts = {};
 
         opts.environment = 'test';
@@ -40,7 +41,7 @@ describe('AWSCommonsFactory', function() {
     };
 
     describe('#instance', function() {
-        var methods = [
+        const methods = [
             'createS3Connection',
             'createSESConnection',
             'createSNSConnection',
@@ -48,14 +49,14 @@ describe('AWSCommonsFactory', function() {
         ];
 
         it('should create an instance of AWSCommonsFactory', function() {
-            var factory = new AWSCommonsFactory( createOptions() );
+            const factory = new AWSCommonsFactory( createOptions() );
             should.exist( factory );
 
             factory.should.be.an.instanceof( AWSCommonsFactory );
         });
 
         it('should create an instance of AWSCommonsFactory from static constructor', function() {
-            var factory = AWSCommonsFactory.createInstance( createOptions() );
+            const factory = AWSCommonsFactory.createInstance( createOptions() );
 
             should.exist( factory );
 
@@ -63,16 +64,16 @@ describe('AWSCommonsFactory', function() {
         });
 
         it('should have all known methods by size and name', function() {
-            var factory = new AWSCommonsFactory( createOptions() );
+            const factory = new AWSCommonsFactory( createOptions() );
 
-            dash.methods( factory ).length.should.equal( methods.length );
+            dash.functions( factory ).length.should.equal( methods.length );
             methods.forEach(function(method) {
                 factory[ method ].should.be.a( 'function' );
             });
         });
 
         it('should execute all known methods', function() {
-            var factory = new AWSCommonsFactory( createOptions() );
+            const factory = new AWSCommonsFactory( createOptions() );
 
             methods.forEach(function(method) {
                 var obj = factory[ method ]();
@@ -84,15 +85,15 @@ describe('AWSCommonsFactory', function() {
 
     describe('parseKeys', function() {
         it('should parse a set of known keys', function() {
-            var factory = new AWSCommonsFactory( createOptions() ),
+            const factory = new AWSCommonsFactory( createOptions() ),
                 keys = factory.parseKeys();
 
             should.exist( keys );
         });
 
         it('should fail to parse a bad set of keys', function() {
-            var options = createOptions(),
-                factory;
+            const options = createOptions();
+            var factory;
 
             options.base64Keys = 'bad-keys';
             factory = new AWSCommonsFactory( options );
@@ -105,13 +106,13 @@ describe('AWSCommonsFactory', function() {
     });
 
     describe('createS3Connection', function() {
-        var factory = new AWSCommonsFactory( createOptions() );
+        const factory = new AWSCommonsFactory( createOptions() );
 
         it('should create an S3 connection object', function() {
-            var s3 = factory.createS3Connection();
+            const s3 = factory.createS3Connection();
 
             should.exist( s3 );
-            dash.methods( s3 ).length.should.be.above( 80 );
+            s3.should.be.instanceof( aws.S3 );
         });
     });
 });
