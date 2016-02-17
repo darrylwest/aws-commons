@@ -42,7 +42,9 @@ describe('SESMailerTests', function() {
             'once',
             'removeAllListeners',
             'removeListener',
-            'setMaxListeners'
+            'setMaxListeners',
+            'getMaxListeners',
+            'listenerCount'
         ];
 
         it('should create an instance of SESMailer', function() {

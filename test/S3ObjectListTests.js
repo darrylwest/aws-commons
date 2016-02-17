@@ -29,24 +29,26 @@ describe('S3ObjectList', function() {
 
     describe('#instance', function() {
         var methods = [
-                'list',
-                'listCompleteCallback',
-                'filter',
-                'parseObject',
-                'setBucket',
-                'setMaxKeys',
-                'setPrefix',
-                'setMarker',
-                // inherited from event emitter
-                'addListener',
-                'emit',
-                'listeners',
-                'on',
-                'once',
-                'removeAllListeners',
-                'removeListener',
-                'setMaxListeners'
-            ];
+            'list',
+            'listCompleteCallback',
+            'filter',
+            'parseObject',
+            'setBucket',
+            'setMaxKeys',
+            'setPrefix',
+            'setMarker',
+            // inherited from event emitter
+            'addListener',
+            'emit',
+            'listeners',
+            'on',
+            'once',
+            'removeAllListeners',
+            'removeListener',
+            'setMaxListeners',
+            'getMaxListeners',
+            'listenerCount'
+        ];
 
         it('should create an instance of S3ObjectList', function() {
             var lister = new S3ObjectList( createOptions() );

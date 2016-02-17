@@ -29,22 +29,24 @@ describe('S3BucketWatch', function() {
 
     describe('#instance', function() {
         var methods = [
-                'start',
-                'listCallback',
-                'processListItem',
-                'getContentList',
-                'processDeletes',
-                'stop',
-                // inherited from event emitter
-                'addListener',
-                'emit',
-                'listeners',
-                'on',
-                'once',
-                'removeAllListeners',
-                'removeListener',
-                'setMaxListeners'
-            ];
+            'start',
+            'listCallback',
+            'processListItem',
+            'getContentList',
+            'processDeletes',
+            'stop',
+            // inherited from event emitter
+            'addListener',
+            'emit',
+            'listeners',
+            'on',
+            'once',
+            'removeAllListeners',
+            'removeListener',
+            'setMaxListeners',
+            'getMaxListeners',
+            'listenerCount'
+        ];
 
         it('should create an instance of S3BucketWatch', function() {
             var watcher = new S3BucketWatch( createOptions() );

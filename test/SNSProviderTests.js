@@ -52,7 +52,9 @@ describe('SNSProviderTests', function() {
             'once',
             'removeAllListeners',
             'removeListener',
-            'setMaxListeners'
+            'setMaxListeners',
+            'getMaxListeners',
+            'listenerCount'
         ];
 
         it('should create an instance of SNSProvider', function() {
@@ -67,6 +69,7 @@ describe('SNSProviderTests', function() {
 
             dash.methods( provider ).length.should.equal( methods.length );
             methods.forEach(function(method) {
+
                 provider[ method ].should.be.a( 'function' );
             });
         });

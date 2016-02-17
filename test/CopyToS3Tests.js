@@ -32,21 +32,23 @@ describe('CopyToS3', function() {
 
     describe('#instance', function() {
         var methods = [
-                'copy',
-                'statFileCallback',
-                'readFile',
-                'readFileCallback',
-                'copyCompleteCallback',
-                // inherited from event emitter
-                'addListener',
-                'emit',
-                'listeners',
-                'on',
-                'once',
-                'removeAllListeners',
-                'removeListener',
-                'setMaxListeners'
-            ];
+            'copy',
+            'statFileCallback',
+            'readFile',
+            'readFileCallback',
+            'copyCompleteCallback',
+            // inherited from event emitter
+            'addListener',
+            'emit',
+            'listeners',
+            'on',
+            'once',
+            'removeAllListeners',
+            'removeListener',
+            'setMaxListeners',
+            'getMaxListeners',
+            'listenerCount'
+        ];
 
         it('should create an instance of CopyToS3', function() {
             var copier = new CopyToS3( createOptions() );
