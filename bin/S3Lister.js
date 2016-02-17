@@ -5,23 +5,24 @@
  * @author: darryl.west@raincitysoftware.com
  * @created: 4/27/14 4:54 PM
  */
-var VERSION = '0.1.4',
+const VERSION = '0.2.1',
     path = require('path'),
     parser = require('commander'),
     S3ObjectList = require('../lib/S3ObjectList'),
     AWSCommonsFactory = require('../lib/AWSCommonsFactory');
 
-var S3Lister = function() {
+const S3Lister = function() {
     'use strict';
 
-    var s3lister = this,
+    const s3lister = this,
         log = require('simple-node-logger' ).createSimpleLogger(),
         home = process.env.HOME,
         opts = {
             log:log,
             keyfile:path.join( home, '.ssh', 'keys.enc' )
-        },
-        factory,
+        };
+    
+    var factory,
         lister,
         options,
         config;

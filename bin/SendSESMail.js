@@ -9,15 +9,14 @@
 
 'use strict';
 
-var parser = require('commander' ),
+const parser = require('commander' ),
     path = require('path'),
     uuid = require('node-uuid'),
     crypto = require('crypto'),
     SESMailer = require('../index' ).commons.SESMailer,
     AWSCommonsFactory = require('../index').commons.AWSCommonsFactory;
 
-
-var generate = function() {
+const generate = function() {
     var buf = crypto.randomBytes( 6 );
     var key = buf.toString("hex");
 
@@ -28,19 +27,20 @@ var generate = function() {
     return value;
 };
 
-var log = require('simple-node-logger' ).createSimpleLogger(),
+const log = require('simple-node-logger' ).createSimpleLogger(),
     opts = {
         log:log,
         keyfile:path.join( process.env.HOME, '.ssh/keys.enc' )
     },
-    factory = AWSCommonsFactory.createInstance( opts ),
-    mailer;
+    factory = AWSCommonsFactory.createInstance( opts );
+
+    var mailer;
 
 opts.ses = factory.createSESConnection();
 
 mailer = new SESMailer( opts );
 
-var model = mailer.createEMailModel();
+const model = mailer.createEMailModel();
 
 // now set the to/subject/body
 model.setSource( uuid.v4() );

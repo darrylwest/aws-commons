@@ -6,23 +6,24 @@
  * @author: darryl.west@raincitysoftware.com
  * @created: 4/16/14 7:07 AM
  */
-var VERSION = '0.1.4',
+const VERSION = '0.2.1',
     path = require('path'),
     parser = require('commander' ),
     CopyToS3 = require('../lib/CopyToS3' ),
     AWSCommonsFactory = require('../lib/AWSCommonsFactory');
 
-var S3CopyFile = function() {
+const S3CopyFile = function() {
     'use strict';
 
-    var copy = this,
+    const copy = this,
         log = require('simple-node-logger' ).createSimpleLogger(),
         home = process.env.HOME,
         opts = {
             log:log,
             keyfile:path.join( home, '.ssh', 'keys.enc' )
-        },
-        factory,
+        };
+
+    var factory,
         copier,
         options;
 
