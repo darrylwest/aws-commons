@@ -50,22 +50,22 @@ The AWSFactory is designed to work as a singleton by invoking it's static create
 
 Or, rather than setting the string, you can specify the key file like this:
 
-	var opts = {
+	const opts = {
 		keyfile:'path/to/file'
 	};
 
-	var factory = AWSCommonsFactory.createInstance( opts );
+	const factory = AWSCommonsFactory.createInstance( opts );
 
 Factory methods are used to create instances of AWS services.  Examples include:
 
 	// create an S3 connection
-	var s3 = factory.createS3Connection();
+	const s3 = factory.createS3Connection();
 
 	// create an SES email connection 
-	var ses = factory.createSESConnection();
+	const ses = factory.createSESConnection();
 
 	// create a connection to SQS
-	var sqs = createSQSConnection();
+	const sqs = createSQSConnection();
 
 ## S3 Utilities
 
@@ -78,7 +78,7 @@ The CopyToS3 utility reads a source file, calculates the md5 hash, then puts the
 A typical file copy example looks like this:
 
 	// create the copy options
-	var opts = {
+	const opts = {
 		log:log, // and standard logger, e.g., winston, simple-node-logger, log4j, etc
 		sourceFile:'path/to/mySourceFile.txt',
 		bucket:'bucket-name',
@@ -88,18 +88,18 @@ A typical file copy example looks like this:
 	};
 
 	// create the copier
-	var copier = new CopyToS3( opts );
+	const copier = new CopyToS3( opts );
 
 	// attatch some event listeners
-	copier.on('complete', function(stats) {
+	copier.on('complete', (stats) => {
 		log.info('file copy completed: bytes transferred: ', stats.size());
 	});
 
-	copier.on('progress', function(msg) {
+	copier.on('progress', (msg) => {
 		log.info('copy progress: ', msg);
 	});
 
-	copier.on('error', function(err) {
+	copier.on('error', (err) => {
 		log.error('something went wrong: ', err.message);
 	});
 
@@ -121,17 +121,17 @@ S3ObjectList can list all or a filtered set of objects for a given S3 bucket.  T
 
 A typical example would look like this:
 
-	var opts = {
+	const opts = {
 		log:log, // and standard logger, e.g., winston, simple-node-logger, log4j, etc
 		bucket:'bucket-name',
 		s3:factory.createS3Connection();
 	};
 
-	var lister = new S3ObjectList( opts );
+	const lister = new S3ObjectList( opts );
 	
 	// for this list, we just want the html files so use a filter
 	lister.filter = function(obj) {
-		var item = lister.parseObject( obj );
+		let item = lister.parseObject( obj );
 		
 		if (item.key.indexOf( '.html' ) > 0) {
 			return item;
@@ -153,7 +153,7 @@ A typical example would look like this:
 		}
 	});
 
-	lister.on('error', function(err) {
+	lister.on('error', (err) => {
 		log.error('list error: ', err.message);
 	});
 
@@ -168,14 +168,14 @@ S3BucketWatch is an object watcher for a specified S3 Bucket.  Objects are perio
 
 A typical example:
 
-	var opts = {
+	const opts = {
 		log:log, // and standard logger, e.g., winston, simple-node-logger, log4j, etc
 		bucket:'bucket-name',
 		s3:factory.createS3Connection(),
         sleepInterval:6000 // 6 second loop
 	};
 
-	var watcher = new S3BucketWatch( opts ),
+	let watcher = new S3BucketWatch( opts ),
     	referenceList;
 
     watcher.on('listAvailable', function(size) {
@@ -186,7 +186,7 @@ A typical example:
         }
     });
 
-	watcher.on('change', function(item, action) {
+	watcher.on('change', (item, action) => {
     	// action is added or modified or deleted
 		log.info( item.key, ' was ', action );
 
@@ -194,7 +194,7 @@ A typical example:
 		// do something with the changed item
 	});
 
-	watcher.on('error', function(err) {
+	watcher.on('error', (err) => {
 		log.error('list error: ', err.message);
 	});
 
@@ -236,14 +236,14 @@ SESMailer is a thin wrapper around AWS/SES.  It makes it easy to create an SES c
 
 A typical example:
 
-	var opts = {
+	const opts = {
         log:log,
         ses:factory.createSESConnection
     };
 
-    var mailer = new SESMailer( opts );
+    const mailer = new SESMailer( opts );
 
-    var model = mailer.createEMailParams();
+    let model = mailer.createEMailParams();
 
     model.setToAddress( 'myemail@email.com' );
     model.setCCAddress( [ ccme@email.com, ccyou@email.com ] );
@@ -281,7 +281,7 @@ SNSProvider is a thin wrapper around AWS/SNS.  It makes it easy to send simple n
 The mock is easy to use.  Just set data in the mock's cache then read it back with standard S3 commands.  Here is a simple example:
 
 ```
-var mock = new MockS3(),
+let mock = new MockS3(),
 	text = 'this is my data stored on S3...',
 	params = {
 		Bucket:'mybucket',
@@ -358,12 +358,13 @@ Usage: s3copyfile [options]
 
   Options:
 
-    -h, --help                    output usage information
-    -V, --version                 output the version number
-    -f --file <file>              set the source file
-    -b --bucket <bucket>          set the destination bucket
-    -k --key <key>                set the file key, e.g., destination name
+    -h, --help                 output usage information
+    -V, --version              output the version number
+    -f --file <file>           set the source file
+    -b --bucket <bucket>       set the destination bucket
+    -p --private               set the file to private
+    -k --key <key>             set the file key, e.g., destination name
     -a --accessFile <accessFile>  set the access file
 ```
 - - -
-<p><small><em>copyright © 2014-2016 rain city software | version 0.92.11</em></small></p>
+<p><small><em>copyright © 2014-2016 rain city software | version 0.92.13</em></small></p>
