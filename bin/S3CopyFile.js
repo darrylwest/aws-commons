@@ -32,6 +32,7 @@ const S3CopyFile = function() {
         .option('-f --file <file>', 'set the source file')
         .option('-b --bucket <bucket>', 'set the destination bucket')
         .option('-k --key <key>', 'set the file key, e.g., destination name')
+        .option('-p --private', 'set the access to private, default is public-read')
         .option('-a --accessFile <accessFile>', 'set the access file')
         .parse( process.argv );
 
@@ -62,10 +63,16 @@ const S3CopyFile = function() {
             s3:factory.createS3Connection()
         };
 
+        if (options.private) {
+            log.info('set the acl to private');
+            opts.acl = 'private';
+        }
+
         copier = new CopyToS3( opts );
         copier.on('complete', function() {
             log.info('copy complete...');
         });
+
         copier.on('error', function(err) {
             log.error( err.message );
         });
