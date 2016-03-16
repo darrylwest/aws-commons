@@ -4,16 +4,17 @@
  * @author: darryl.west@raincitysoftware.com
  * @created: 4/12/14 8:29 PM
  */
-var dash = require('lodash' ),
+const dash = require('lodash' ),
     path = require('path' ),
     S3Dataset = require('../fixtures/S3Dataset');
 
-var MockS3 = function() {
+const MockS3 = function() {
     'use strict';
 
-    var mock = this,
-        dataset = new S3Dataset(),
-        cache = {};
+    const mock = this,
+        dataset = new S3Dataset();
+
+    let cache = {};
 
     this.getCache = function() {
         return cache;
@@ -33,7 +34,7 @@ var MockS3 = function() {
     };
 
     this.listBuckets = function(callback) {
-        var data = {
+        const data = {
             Buckets:dataset.createBucketList(),
             Owner:{
                 ID:dataset.createId(),
@@ -46,9 +47,10 @@ var MockS3 = function() {
     };
 
     this.getObject = function(params, callback) {
-        var id = path.join( params.Bucket, params.Key ),
-            data = cache[ id ],
-            err;
+        const id = path.join( params.Bucket, params.Key ),
+            data = cache[ id ];
+
+        let err;
 
         if (!data) {
             err = new Error('not found');
@@ -62,7 +64,7 @@ var MockS3 = function() {
     };
 
     this.putObject = function(params, callback) {
-        var err,
+        let err,
             data;
 
         if (!params.Body) err = new Error('request must have a Body');
@@ -83,7 +85,7 @@ var MockS3 = function() {
     };
 
     this.listObjects = function(params, callback) {
-        var err,
+        let err,
             data,
             request;
 
@@ -105,7 +107,7 @@ var MockS3 = function() {
     };
 
     // these are all the known methods for S3 as of 2014-04-12
-    var methods = [
+    const methods = [
         'abortMultipartUpload',
         'addAllRequestListeners',
         'addContentType',

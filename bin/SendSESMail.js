@@ -17,11 +17,11 @@ const parser = require('commander' ),
     AWSCommonsFactory = require('../index').commons.AWSCommonsFactory;
 
 const generate = function() {
-    var buf = crypto.randomBytes( 6 );
-    var key = buf.toString("hex");
+    const buf = crypto.randomBytes( 6 );
+    const key = buf.toString("hex");
 
     console.log( key, key.length );
-    var value = [ key.substr(0, 4), key.substr(4,4), key.substr(8) ].join(' ');
+    const value = [ key.substr(0, 4), key.substr(4,4), key.substr(8) ].join(' ');
     console.log( value );
 
     return value;
@@ -34,7 +34,7 @@ const log = require('simple-node-logger' ).createSimpleLogger(),
     },
     factory = AWSCommonsFactory.createInstance( opts );
 
-    var mailer;
+let mailer;
 
 opts.ses = factory.createSESConnection();
 

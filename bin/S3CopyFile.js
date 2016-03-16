@@ -6,7 +6,7 @@
  * @author: darryl.west@raincitysoftware.com
  * @created: 4/16/14 7:07 AM
  */
-const VERSION = '0.2.1',
+const VERSION = '0.2.2',
     path = require('path'),
     parser = require('commander' ),
     CopyToS3 = require('../lib/CopyToS3' ),
@@ -23,7 +23,7 @@ const S3CopyFile = function() {
             keyfile:path.join( home, '.ssh', 'keys.enc' )
         };
 
-    var factory,
+    let factory,
         copier,
         options;
 
@@ -46,7 +46,7 @@ const S3CopyFile = function() {
 
     this.run = function() {
         // verify the required command line parameters
-        var errors = copy.validateOptions();
+        const errors = copy.validateOptions();
 
         if (errors.length > 0) {
             parser.outputHelp();
@@ -54,7 +54,7 @@ const S3CopyFile = function() {
             return;
         }
 
-        var opts = {
+        const opts = {
             log:log,
             sourceFile:options.file,
             bucket:options.bucket,

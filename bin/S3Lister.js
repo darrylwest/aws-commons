@@ -5,7 +5,7 @@
  * @author: darryl.west@raincitysoftware.com
  * @created: 4/27/14 4:54 PM
  */
-const VERSION = '0.2.1',
+const VERSION = '0.2.2',
     path = require('path'),
     parser = require('commander'),
     S3ObjectList = require('../lib/S3ObjectList'),
