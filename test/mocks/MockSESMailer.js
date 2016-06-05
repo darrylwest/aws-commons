@@ -13,7 +13,7 @@ var MockSESMailer = {};
 MockSESMailer.createInstance = function() {
     'use strict';
 
-    var opts = {};
+    let opts = {};
 
     opts.log = MockLogger.createLogger('MockSESMailer');
     opts.ses = new MockSES();
