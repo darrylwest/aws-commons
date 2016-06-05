@@ -88,7 +88,7 @@ const S3CopyFile = function() {
         if (!options.key) errors.push('request must include a destination key');
 
         return errors;
-    }
+    };
 };
 
 new S3CopyFile().run();

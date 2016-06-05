@@ -86,7 +86,7 @@ const S3Lister = function() {
         if (!options.bucket) errors.push('request must include a destination bucket');
 
         return errors;
-    }
+    };
 };
 
 new S3Lister().run();

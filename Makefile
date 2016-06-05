@@ -1,3 +1,8 @@
+JSFILES=bin/*.js lib/*.js test/*/*.js index.js watcher.js
+TESTFILES=test/*.js
+JSHINT=node_modules/.bin/jshint
+REPORTER=node_modules/jshint-stylish/
+MOCHA=node_modules/.bin/mocha
 
 BIN = /usr/local/bin
 
@@ -9,15 +14,17 @@ npm:
 	@npm install
 
 test:
-	@( [ -d node_modules ] || make npm )
-	@( grunt test )
+	@( $(MOCHA) $(TESTFILES) )
+	@( make jshint )
+
+test-short:
+	@( $(MOCHA) --reporter dot $(TESTFILES) )
 
 jshint:
-	@( [ -d node_modules ] || make npm )
-	@( grunt jshint )
+	@( $(JSHINT) --verbose --reporter $(REPORTER) $(TESTFILES) $(JSFILES) )
 
 watch:
-	@( grunt watchall )
+	@( ./watcher.js )
 
 install:
 	[ -f $(BIN)/s3lister ] || ln -s `pwd`/bin/S3Lister.js $(BIN)/s3lister
