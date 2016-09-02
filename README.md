@@ -83,7 +83,7 @@ A typical file copy example looks like this:
 		sourceFile:'path/to/mySourceFile.txt',
 		bucket:'bucket-name',
 		key:'destination/key/file.txt',
-		s3:factory.createS3Connection();
+		s3:factory.createS3Connection()
 	};
 
 	// create the copier
@@ -104,15 +104,31 @@ A typical file copy example looks like this:
 
 	copier.copy();
 
+_The file's mime type is fetched from [mime-db](https://www.npmjs.com/package/mime-db); see db.json for specifics.  If the mime type is not in the database, the default type is text/plain..._
+
+Or if you don't want to use event listeners, you may invoke copy with a callback like this:
+
+	// create the copier
+	const copier = new CopyToS3( opts );
+	const callback = function(err, stats) {
+		if (err) {
+			log.error( err );
+		} else {
+			log.info( stats );
+		}
+	};
+	
+	copier.copy( callback );
+	
 #### When To Use
 
-The CopyToS3 utility should be used when you have a very large file that needs to be copied from the local file system to an S3 bucket.  This is typically done in a separate thread or even a separate process.
+The CopyToS3 utility should be used when you have a file that needs to be copied from the local file system to an S3 bucket.  This is typically done in a separate thread or even a separate process.
 
 This can also be used as a simple helper to copy a small file from local file to S3 with minimal fuss.  Since CopyToS3 is statefull it can be used 
 
 #### When not to use
 
-If your application has existing object data where a file doesn't need to be read, then use s3.putObject();
+If your application has existing object data where a file doesn't need to be read, then use s3.putObject().  Or if your file is huge, you should use a multi-part / stream uploader.
 
 ### S3ObjectList
 
