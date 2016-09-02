@@ -57,9 +57,8 @@ describe('CopyToS3', function() {
     });
 
     describe('copy', function() {
-        var copier = new CopyToS3( createOptions() );
-
         it('should start the copy process by stating the specified file', function(done) {
+            const copier = new CopyToS3( createOptions() );
             copier.statFileCallback = function(err, stat) {
                 should.not.exist( err );
                 should.exist( stat );
@@ -68,6 +67,18 @@ describe('CopyToS3', function() {
             };
 
             copier.copy();
+        });
+
+        it('should run the copy process and invoke the callback', function(done) {
+            const copier = new CopyToS3( createOptions() );
+            const callback = function(err, stat) {
+                should.not.exist( err );
+                should.exist( stat );
+
+                done();
+            };
+
+            copier.copy( callback );
         });
     });
 
