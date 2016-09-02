@@ -83,16 +83,15 @@ A typical file copy example looks like this:
 		sourceFile:'path/to/mySourceFile.txt',
 		bucket:'bucket-name',
 		key:'destination/key/file.txt',
-		mime:'text/plain', // optional
 		s3:factory.createS3Connection();
 	};
 
 	// create the copier
 	const copier = new CopyToS3( opts );
 
-	// attatch some event listeners
+	// atatch some event listeners
 	copier.on('complete', (stats) => {
-		log.info('file copy completed: bytes transferred: ', stats.size());
+		log.info('file copy completed: bytes transferred: ', stats.fileSize);
 	});
 
 	copier.on('progress', (msg) => {
@@ -109,7 +108,7 @@ A typical file copy example looks like this:
 
 The CopyToS3 utility should be used when you have a very large file that needs to be copied from the local file system to an S3 bucket.  This is typically done in a separate thread or even a separate process.
 
-This can also be used as a simple helper to copy a small file from local file to S3 with minimal fuss.  Since CopyToS3 is stateful it can be used 
+This can also be used as a simple helper to copy a small file from local file to S3 with minimal fuss.  Since CopyToS3 is statefull it can be used 
 
 #### When not to use
 
@@ -367,4 +366,4 @@ Usage: s3copyfile [options]
     -a --accessFile <accessFile>  set the access file
 ```
 - - -
-<p><small><em>copyright © 2014-2016 rain city software | version 0.92.14</em></small></p>
+<p><small><em>copyright © 2014-2016 rain city software | version 0.92.16</em></small></p>
