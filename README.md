@@ -381,5 +381,20 @@ Usage: s3copyfile [options]
     -k --key <key>             set the file key, e.g., destination name
     -a --accessFile <accessFile>  set the access file
 ```
+
+### S3PullFile
+```
+Usage: s3pullfile [options]
+
+  Options:
+
+    -h, --help                 output usage information
+    -V, --version              output the version number
+    -f --file <file>           set the destination file
+    -b --bucket <bucket>       set the destination bucket
+    -k --key <key>             set the file key, e.g., destination name
+    -a --accessFile <accessFile>  set the access file
+```
+
 - - -
-<p><small><em>copyright © 2014-2016 rain city software | version 0.92.16</em></small></p>
+<p><small><em>copyright © 2014-2016 rain city software | version 0.92.17</em></small></p>
