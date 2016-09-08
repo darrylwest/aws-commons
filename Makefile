@@ -29,6 +29,7 @@ watch:
 install:
 	[ -f $(BIN)/s3lister ] || ln -s `pwd`/bin/S3Lister.js $(BIN)/s3lister
 	[ -f  $(BIN)/s3copyfile ] || ln -s `pwd`/bin/S3CopyFile.js $(BIN)/s3copyfile
+	[ -f  $(BIN)/s3pullfile ] || ln -s `pwd`/bin/S3PullFile.js $(BIN)/s3pullfile
 
 version:
 	@( cd app ; node app --version )

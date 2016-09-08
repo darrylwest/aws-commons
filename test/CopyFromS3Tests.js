@@ -32,6 +32,7 @@ describe('CopyFromS3', function() {
     describe('#instance', function() {
         const methods = [
             'copy',
+            'writeObjectToDisk',
             'copyCompleteCallback'
         ];
 
