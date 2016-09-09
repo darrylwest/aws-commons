@@ -10,7 +10,7 @@
  * @author: darryl.west@raincitysoftware.com
  * @created: 2016-09-05
  */
-const VERSION = '0.1.0',
+const VERSION = '0.1.11',
     path = require('path'),
     parser = require('commander' ),
     CopyFromS3 = require('../lib/CopyFromS3' ),
@@ -33,10 +33,9 @@ const S3PullFile = function() {
 
     options = parser
         .version( VERSION )
-        .option('-f --file <file>', 'set the source file')
-        .option('-b --bucket <bucket>', 'set the destination bucket')
-        .option('-k --key <key>', 'set the file key, e.g., destination name')
-        .option('-p --private', 'set the access to private, default is public-read')
+        .option('-f --file <file>', 'set the destination file')
+        .option('-b --bucket <bucket>', 'set the source bucket')
+        .option('-k --key <key>', 'set the file key, e.g., source name')
         .option('-a --accessFile <accessFile>', 'set the access file')
         .parse( process.argv );
 

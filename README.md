@@ -391,8 +391,8 @@ Usage: s3pullfile [options]
     -h, --help                 output usage information
     -V, --version              output the version number
     -f --file <file>           set the destination file
-    -b --bucket <bucket>       set the destination bucket
-    -k --key <key>             set the file key, e.g., destination name
+    -b --bucket <bucket>       set the source bucket
+    -k --key <key>             set the source file key
     -a --accessFile <accessFile>  set the access file
 ```
 
