@@ -8,6 +8,7 @@ module.exports = {
     commons:{
         AWSCommonsFactory: require( './lib/AWSCommonsFactory' ),
         CopyToS3: require( './lib/CopyToS3' ),
+        CopyFromS3: require( './lib/CopyFromS3' ),
         S3ObjectList: require('./lib/S3ObjectList'),
         SESMailer: require( './lib/SESMailer' ),
         SNSProvider: require( './lib/SNSProvider' )
