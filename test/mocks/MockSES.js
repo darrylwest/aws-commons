@@ -4,7 +4,7 @@
  * @author: darryl.west@raincitysoftware.com
  * @created: 11/3/14 6:16 PM
  */
-var uuid = require('node-uuid' );
+var uuid = require('uuid' );
 
 var MockSES = function() {
     'use strict';

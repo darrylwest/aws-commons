@@ -7,7 +7,7 @@
  */
 var randomData = require('random-fixture-data' ),
     crypto = require('crypto' ),
-    uuid = require('node-uuid');
+    uuid = require('uuid');
 
 var S3Dataset = function() {
     'use strict';

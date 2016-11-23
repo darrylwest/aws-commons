@@ -11,7 +11,7 @@
 
 const parser = require('commander' ),
     path = require('path'),
-    uuid = require('node-uuid'),
+    uuid = require('uuid'),
     crypto = require('crypto'),
     SESMailer = require('../index' ).commons.SESMailer,
     AWSCommonsFactory = require('../index').commons.AWSCommonsFactory;
