@@ -1,6 +1,6 @@
 {
   "name": "aws-commons",
-  "version": "0.92.20",
+  "version": "0.92.21",
   "description": "A collection of small utilities to manage AWS services and actions",
   "main": "./index.js",
   "repository": {
@@ -27,13 +27,19 @@
     "simple-node-logger": "^0.93.12"
   },
   "devDependencies": {
-    "chai": "^3.5.0",
-    "jshint": "^2.9.2",
-    "jshint-stylish": "^2.1.0",
-    "mocha": "^2.4.5",
-    "random-fixture-data": "^2.0.17"
+    "chai": "^4.1.2",
+    "jshint": "^2.9.5",
+    "jshint-stylish": "^2.1.1",
+    "mocha": "^3.2.0",
+    "random-fixture-data": "^2.0.19"
   },
+  "files": [
+    "index.js",
+    "lib/",
+    "test/mocks/",
+    "test/fixtures/"
+  ],
   "author": "darryl.west@raincitysoftware.com",
-  "license": "Apache 2.0",
+  "license": "Apache-2.0",
   "homepage": "https://github.com/darrylwest/aws-commons"
 }
