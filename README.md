@@ -397,4 +397,4 @@ Usage: s3pullfile [options]
 ```
 
 - - -
-<p><small><em>copyright © 2014-2016 rain city software | version 0.92.21</em></small></p>
+<p><small><em>copyright © 2014-2018 rain city software | version 0.92.22</em></small></p>
